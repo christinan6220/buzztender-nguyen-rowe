@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.BuzzTenderRoweNguyen.BuzzTender;
 
 import androidx.appcompat.app.AppCompatActivity;
 
