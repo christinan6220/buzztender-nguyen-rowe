@@ -7,6 +7,9 @@
     <string name="login">Login</string>
     <string name="register">Create New Account</string>
     <string name="firestore_button">Launch Firestore Activity</string>
+
+    <!--    Authentication Feedback     -->
     <string name="login_successful">Sign-in Successful!</string>
     <string name="new_acct_successful">Account Created Successfully!</string>
+    <string name="logout_successful">Logged Out Successfully!</string>
 </resources>
