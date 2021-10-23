@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mLoggedInGroup = findViewById(R.id.logged_in_group);
+//        mLoggedInGroup = findViewById(R.id.logged_in_group);
         mLoggedOutGroup = findViewById(R.id.logged_out_group);
-        mNameLabel = findViewById(R.id.hello);
+//        mNameLabel = findViewById(R.id.hello);
         mEmailField = findViewById(R.id.email);
         mPasswordField = findViewById(R.id.password);
 
@@ -59,6 +59,34 @@ public class MainActivity extends AppCompatActivity {
         if(currentUser != null){
             reload();
         }
+    }
+
+    public void signIn(View view) {
+        if (!validateForm()) {
+            return;
+        }
+
+        String email = mEmailField.getText().toString();
+        String password = mPasswordField.getText().toString();
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Exception e = task.getException();
+                            Log.w(TAG, "signInWithEmail:failure", e);
+                            Toast.makeText(MainActivity.this, "Login failed: " + e.getLocalizedMessage(),
+                                    Toast.LENGTH_LONG).show();
+                            updateUI(null);
+                        }
+                    }
+                });
     }
 
     public void createAccount(View view) {
@@ -89,4 +117,36 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    private boolean validateForm() {
+        boolean valid = true;
+
+        String email = mEmailField.getText().toString();
+        if (TextUtils.isEmpty(email)) {
+            mEmailField.setError("Required.");
+            valid = false;
+        } else {
+            mEmailField.setError(null);
+        }
+
+        String password = mPasswordField.getText().toString();
+        if (TextUtils.isEmpty(password)) {
+            mPasswordField.setError("Required.");
+            valid = false;
+        } else {
+            mPasswordField.setError(null);
+        }
+
+        return valid;
+    }
+
+
+//    reload and update ui was intentionally left balck.
+    private void reload() { }
+
+    private void updateUI(FirebaseUser user) {
+
+    }
 }
+
+
