@@ -2,6 +2,8 @@ package com.BuzzTenderRoweNguyen.BuzzTender;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -38,10 +40,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        mLoggedInGroup = findViewById(R.id.logged_in_group);
         mLoggedOutGroup = findViewById(R.id.logged_out_group);
-//        mNameLabel = findViewById(R.id.hello);
         mEmailField = findViewById(R.id.email);
         mPasswordField = findViewById(R.id.password);
 
@@ -88,6 +87,14 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+    private void updateUI(FirebaseUser user) {
+        if (user != null){
+            Intent signInIntent = new Intent(MainActivity.this, welcomePage.class);
+            startActivity(signInIntent);
+            Intent createAccountIntent = new Intent(MainActivity.this, welcomePage.class);
+            startActivity(createAccountIntent);
+        }
     }
 
     public void createAccount(View view) {
@@ -143,12 +150,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-//    reload and update ui was intentionally left balck.
+//    reload and update ui was intentionally left blank.
     private void reload() { }
 
-    private void updateUI(FirebaseUser user) {
-
-    }
 }
 
 
