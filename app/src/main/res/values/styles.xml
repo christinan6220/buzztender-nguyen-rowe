@@ -3,9 +3,13 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">#2E58AC</item>
+        <item name="colorPrimaryDark">#0A2F7A</item>
+        <item name="colorAccent">#EEEE8A</item>
+    </style>
+    <style name="Buttons.whiteBlue" parent= "ThemeOverlay.AppCompat">
+        <item name="android:colorButtonNormal">#090F71</item>
+        <item name="android:textColor">#F8F9FB</item>
     </style>
 
 </resources>
