@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".gamesAvailable"
+            android:exported="true" />
+        <activity
             android:name=".userProfile"
             android:exported="true" />
         <activity

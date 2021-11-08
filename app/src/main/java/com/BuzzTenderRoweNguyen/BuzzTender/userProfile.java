@@ -2,10 +2,13 @@ package com.BuzzTenderRoweNguyen.BuzzTender;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -20,6 +23,7 @@ public class userProfile extends AppCompatActivity {
 
     private final FirebaseFirestore mDb = FirebaseFirestore.getInstance();
     private static final String TAG = "userProfile";
+    private FirebaseAuth mAuth;
 
     TextView weight, age;
     Spinner gender;
@@ -31,6 +35,12 @@ public class userProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+
+        //get a reference to the toolbar - in order to setup logout functionality
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
 
         Intent intent = getIntent();
 
@@ -58,6 +68,8 @@ public class userProfile extends AppCompatActivity {
         } else {
             addUIDDocument();
             Toast.makeText(userProfile.this, "Profile updated!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(userProfile.this, userBACInfo.class);
+            startActivity(intent);
         }
     }
 
@@ -77,5 +89,30 @@ public class userProfile extends AppCompatActivity {
                         Toast.makeText(userProfile.this, "Failed to add user!", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    //signout functionality for the logout button on the toolbar
+    public void signOut() {
+        mAuth.signOut();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        //add the items to the actionbar
+        getMenuInflater().inflate(R.menu.toolbar_buttons, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                //MainActivity signUserOut = new MainActivity();
+                signOut();
+                Intent logoutIntent = new Intent(userProfile.this, MainActivity.class);
+                startActivity(logoutIntent);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

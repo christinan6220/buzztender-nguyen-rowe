@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
-        android:text="TextView"
+        android:text="Gender: "
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/personalnfo" />
 
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
-        android:text="TextView"
+        android:text="Weight: "
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gender" />
 
@@ -46,47 +46,47 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
-        android:text="TextView"
+        android:text="Age: "
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/weight" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/genderInput"
-        android:layout_width="218dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/gender"
-        app:layout_constraintTop_toBottomOf="@+id/personalnfo" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/weightInfo"
-        android:layout_width="226dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/weight"
-        app:layout_constraintTop_toBottomOf="@+id/genderInput"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ageInfo"
-        android:layout_width="223dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/age"
-        app:layout_constraintTop_toBottomOf="@+id/weightInfo"/>
 
     <Button
         android:id="@+id/updateInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Button"
+        android:layout_marginTop="40dp"
+        android:text="Update Information"
+        android:onClick="onUpdateUserProfileClick"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ageInfo" />
+        app:layout_constraintTop_toBottomOf="@+id/ageFireFilled" />
+
+    <TextView
+        android:id="@+id/genderFireFilled"
+        android:layout_width="137dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/gender"
+        app:layout_constraintTop_toBottomOf="@+id/personalnfo" />
+
+    <TextView
+        android:id="@+id/weightFireFilled"
+        android:layout_width="137dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/weight"
+        app:layout_constraintTop_toBottomOf="@+id/genderFireFilled" />
+
+    <TextView
+        android:id="@+id/ageFireFilled"
+        android:layout_width="137dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/age"
+        app:layout_constraintTop_toBottomOf="@+id/weightFireFilled" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
