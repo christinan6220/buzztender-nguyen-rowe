@@ -13,4 +13,14 @@
     <string name="login_successful">Sign-in Successful!</string>
     <string name="new_acct_successful">Account Created Successfully!</string>
     <string name="logout_successful">Logged Out Successfully!</string>
+
+    <!--    Welcome Page Activity   -->
+    <string name="player_profile_button">Player Profile</string>
+
+    <!--    User Profile Activity   -->
+    <string name="gender">Gender:</string>
+    <string name="weight">Weight:</string>
+    <string name="age">Age:</string>
+    <string name="update_profile_button">Update Profile</string>
+
 </resources>
