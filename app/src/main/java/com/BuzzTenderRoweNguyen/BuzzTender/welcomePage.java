@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -48,5 +49,11 @@ public class welcomePage extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    // opens activity_user_profile on button click
+    public void onPlayerProfileClick(View view) {
+        Intent intent = new Intent(welcomePage.this, userProfile.class);
+        startActivity(intent);
     }
 }

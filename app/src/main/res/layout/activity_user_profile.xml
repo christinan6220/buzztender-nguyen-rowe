@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:text="@string/weight"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userGender" />
@@ -35,40 +35,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="36dp"
         android:text="@string/age"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userWeight" />
 
-    <TextView
+    <Spinner
         android:id="@+id/genderFire"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
-        android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/userGender"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:entries="@array/gender_array"/>
 
-    <TextView
+    <EditText
         android:id="@+id/weightFire"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/userWeight"
-        app:layout_constraintTop_toBottomOf="@+id/genderFire" />
+        app:layout_constraintTop_toBottomOf="@+id/genderFire"
+        android:inputType="number"
+        android:hint="@string/hint_lbs"/>
 
-    <TextView
+    <EditText
         android:id="@+id/ageFire"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintStart_toEndOf="@+id/userAge"
-        app:layout_constraintTop_toBottomOf="@+id/weightFire" />
+        app:layout_constraintTop_toBottomOf="@+id/weightFire"
+        android:inputType="number"
+        android:hint="@string/hint_years"/>
 
     <Button
         android:id="@+id/updatePlayerProfile"
@@ -77,7 +79,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/userAge"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/ageFire"
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="onClickUpdateProfile"
+        tools:ignore="UsingOnClickInXml" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
