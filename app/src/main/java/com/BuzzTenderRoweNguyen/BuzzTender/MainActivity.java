@@ -127,9 +127,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-//        String currentUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//        User newUser = new User(currentUID,null, null, null);
-//        mDb.collection(USERS).add(currentUID);
+
     }
 
 
