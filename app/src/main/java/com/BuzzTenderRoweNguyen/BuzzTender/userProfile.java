@@ -120,6 +120,6 @@ public class userProfile extends AppCompatActivity {
 
     public void reloadProfile() {
 //        String getName = mDb.collection(USERS).document(currentUID).get("name");
-        Log.d(TAG, "reloadProfile: getname " + getName);
+//        Log.d(TAG, "reloadProfile: getname " + getName);
     }
 }
