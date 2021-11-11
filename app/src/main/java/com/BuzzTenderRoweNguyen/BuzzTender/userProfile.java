@@ -17,12 +17,14 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 
 public class userProfile extends AppCompatActivity {
 
     private final FirebaseFirestore mDb = FirebaseFirestore.getInstance();
     private static final String TAG = "userProfile";
+    private static final String USERS = "users";
     private FirebaseAuth mAuth;
 
     TextView weight, age;
@@ -114,5 +116,10 @@ public class userProfile extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void reloadProfile() {
+//        String getName = mDb.collection(USERS).document(currentUID).get("name");
+        Log.d(TAG, "reloadProfile: getname " + getName);
     }
 }

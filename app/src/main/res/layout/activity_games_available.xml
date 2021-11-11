@@ -17,7 +17,8 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="12dp"
-        android:onClick="onLoadGamesClick" />
+        android:onClick="onLoadGamesClick"
+        android:text="load games"/>
 
     <ListView
         android:id="@+id/gamesListView"
@@ -27,5 +28,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="12dp" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
