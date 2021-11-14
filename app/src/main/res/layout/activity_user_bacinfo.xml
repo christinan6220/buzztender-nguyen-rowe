@@ -66,6 +66,7 @@
         android:layout_width="137dp"
         android:layout_height="25dp"
         android:layout_marginTop="40dp"
+        android:text="@string/genderFireFilled"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/gender"
         app:layout_constraintTop_toBottomOf="@+id/personalnfo" />
@@ -75,6 +76,7 @@
         android:layout_width="137dp"
         android:layout_height="22dp"
         android:layout_marginTop="20dp"
+        android:text="@string/weightFireFilled"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/weight"
         app:layout_constraintTop_toBottomOf="@+id/genderFireFilled" />
@@ -84,6 +86,7 @@
         android:layout_width="137dp"
         android:layout_height="23dp"
         android:layout_marginTop="20dp"
+        android:text="@string/ageFireFilled"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/age"
         app:layout_constraintTop_toBottomOf="@+id/weightFireFilled" />

@@ -8,6 +8,9 @@
     <string name="register">Create New Account</string>
     <string name="firestore_button">Launch Firestore Activity</string>
     <string name="logout_toolbar_button">Logout Button</string>
+    <string name="weightFireFilled"></string>
+    <string name="ageFireFilled"></string>
+    <string name="genderFireFilled"></string>
 
     <!--    Authentication Feedback     -->
     <string name="login_successful">Sign-in Successful!</string>
