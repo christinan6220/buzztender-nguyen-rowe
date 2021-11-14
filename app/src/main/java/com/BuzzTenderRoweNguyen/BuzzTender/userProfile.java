@@ -14,10 +14,20 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.Source;
+
+import java.util.ArrayList;
 
 
 public class userProfile extends AppCompatActivity {
@@ -54,7 +64,12 @@ public class userProfile extends AppCompatActivity {
         weight = findViewById(R.id.weightFire);
         age = findViewById(R.id.ageFire);
 
-        //populate the textViews
+        updateProfile();
+
+
+
+        //populate the tex
+        // tViews
         // will keep commented atm bc they crash the app - null vals
 //        TODO: populate fields if they already exist in firebase
 //        gender.setText(user.getGender());
@@ -118,8 +133,35 @@ public class userProfile extends AppCompatActivity {
         }
     }
 
-    public void reloadProfile() {
-//        String getName = mDb.collection(USERS).document(currentUID).get("name");
-//        Log.d(TAG, "reloadProfile: getname " + getName);
+    public void updateProfile() {
+
+        DocumentReference docRef = mDb.collection(USERS).document(currentUID);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        // convert document to user obj
+                        User userObj = document.toObject(User.class);
+
+                        // populate textfields
+                        assert userObj != null;
+                        weight.setText(String.valueOf(userObj.getWeight()));
+                        age.setText(String.valueOf(userObj.getAge()));
+                        if (userObj.getGender().equals("Male")) {
+                            gender.setSelection(1);
+                        } else {
+                            gender.setSelection(2);
+                        }
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
     }
 }

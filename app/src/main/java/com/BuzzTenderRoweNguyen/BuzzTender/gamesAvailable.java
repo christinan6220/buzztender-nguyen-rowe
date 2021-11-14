@@ -44,6 +44,7 @@ public class gamesAvailable extends AppCompatActivity {
 //                android.R.layout.simple_list_item_1,
 //                new ArrayList<Games>()
 //        );
+        testytest();
         adapter = new GameAdapter(this, new ArrayList<Games>());
         gamesListView.setAdapter(adapter);
     }
@@ -63,29 +64,19 @@ public class gamesAvailable extends AppCompatActivity {
             }
 
             // grab Textviews here
-            TextView gameName = findViewById(R.id.game_name);
-            TextView gameDescripton = findViewById(R.id.game_description);
+            TextView gameName = convertView.findViewById(R.id.game_name);
+            TextView gameDescription = convertView.findViewById(R.id.game_description);
 
             Games g = games.get(position);
+            Log.d(TAG, "getView: " + g.getName());
+
             gameName.setText(g.getName());
-            gameDescripton.setText(g.getDescription());
+            gameDescription.setText(g.getDescription());
+
             return convertView;
         }
 
     }
-    //    public void onLoadGamesClick(View view){
-//        mDb.collection(GAMES)
-//                .get()
-//                .addOnSuccessListener(
-//                        ArrayList<Games> game = new ArrayList<>();
-//                        for (QueryDocumentSnapshot document: queryDocumentSnapshots) {
-//                            Games g = document.toObject(Games.class);
-//                            game.add(g);
-//                            Logd(TAG, g.getName() + " " + g.getDescription());
-//                        }
-//                        adapter.addAll(game);
-//                )
-//    }
 
     //    load games grabs all the game documents from firestore, convert it back to Games obj and puts it in an array
     public void onLoadGamesClick(View view) {
@@ -99,6 +90,24 @@ public class gamesAvailable extends AppCompatActivity {
                             Games g = document.toObject(Games.class);
                             games.add(g);
                             Log.d(TAG, "loadGames: " + g.getName() + " " + g.getDescription());
+                        }
+                        adapter.clear();
+                        adapter.addAll(games);
+                    }
+                });
+    }
+
+    public void testytest() {
+        mDb.collection(GAMES)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        ArrayList<Games> games = new ArrayList<>();
+                        for (QueryDocumentSnapshot document: queryDocumentSnapshots) {
+                            Games g = document.toObject(Games.class);
+                            games.add(g);
+                            Log.d(TAG, "testytest: " + g.getName() + " " + g.getDescription());
                         }
                         adapter.clear();
                         adapter.addAll(games);

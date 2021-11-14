@@ -53,7 +53,7 @@ public class welcomePage extends AppCompatActivity {
 
     // opens activity_user_profile on button click
     public void onPlayerProfileClick(View view) {
-        Intent intent = new Intent(welcomePage.this, userProfile.class);
+        Intent intent = new Intent(welcomePage.this, userBACInfo.class);
         startActivity(intent);
     }
     //opens the games Activity when button is clicked
