@@ -2,6 +2,7 @@ package com.BuzzTenderRoweNguyen.BuzzTender;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -37,6 +38,10 @@ public class gamesAvailable extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games_available);
+
+        //create the up functionality in the toolbar
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         ListView gamesListView = findViewById(R.id.gamesListView);
 //        ArrayAdapter<Games> adapter = new ArrayAdapter<Games>(

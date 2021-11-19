@@ -10,17 +10,41 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".specificGame"
+            android:exported="true"
+            android:parentActivityName=".gamesAvailable">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".gamesAvailable" />
+        </activity>
+        <activity
             android:name=".gamesAvailable"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".welcomePage">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".welcomePage" />
+        </activity>
         <activity
             android:name=".userProfile"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".userBACInfo">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".userBACInfo" />
+        </activity>
         <activity
             android:name=".userBACInfo"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".welcomePage">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".welcomePage" />
+        </activity>
         <activity
             android:name=".welcomePage"
-            android:exported="true" />
+            android:exported="true"
+            android:noHistory="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

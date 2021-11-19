@@ -1,6 +1,7 @@
 package com.BuzzTenderRoweNguyen.BuzzTender;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -51,6 +52,9 @@ public class userProfile extends AppCompatActivity {
         //get a reference to the toolbar - in order to setup logout functionality
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        //create the up functionality in the toolbar
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 

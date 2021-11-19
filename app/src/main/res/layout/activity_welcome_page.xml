@@ -12,13 +12,26 @@
 
     <TextView
         android:id="@+id/welcomeIntro"
-        android:layout_width="346dp"
-        android:layout_height="141dp"
+        android:layout_width="354dp"
+        android:layout_height="199dp"
+        android:gravity="left"
         android:layout_marginTop="20dp"
-        android:text="welcomeIntro"
+        android:theme="@style/TextAppearance.Pretty"
+        android:text="Welcome to Buzztender! The application that helps you improve at games through drinking alcohol. Sometimes liquid courage is needed to improve. All you need to do is enter your information in your profile, and choose a game that you wanna be great in. Then Drink up! This application cacluates that optimum amount of drinks you should have per hour to be fantastic at your drinking activity. We also let you log previous games with the amount of alcohol to see what works best for you. Happy drinking and happy playing from your Buzztender community."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <ImageView
+        android:id="@+id/welcomeImage"
+        android:layout_width="279dp"
+        android:layout_height="172dp"
+        android:layout_margin="12dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/welcome_image"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeIntro" />
 
     <Button
         android:id="@+id/personalInfo"
@@ -26,9 +39,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
+        android:theme="@style/Buttons.whiteBlue"
         app:layout_constraintEnd_toStartOf="@+id/gamesAvailable"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeIntro"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeImage"
         android:text="@string/player_profile_button"
         android:onClick="onPlayerProfileClick"
         tools:ignore="UsingOnClickInXml" />
@@ -39,9 +53,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
+        android:theme="@style/Buttons.whiteBlue"
         android:text="Games Available"
         android:onClick="onGamesAvailableClick"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeIntro" />
+        app:layout_constraintTop_toBottomOf="@+id/welcomeImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

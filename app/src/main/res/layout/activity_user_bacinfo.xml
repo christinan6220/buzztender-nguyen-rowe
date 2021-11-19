@@ -12,10 +12,12 @@
 
     <TextView
         android:id="@+id/personalnfo"
-        android:layout_width="251dp"
-        android:layout_height="53dp"
+        android:layout_width="306dp"
+        android:layout_height="135dp"
         android:layout_marginTop="20dp"
-        android:text="TextView"
+        android:gravity="left"
+        android:theme="@style/TextAppearance.Pretty"
+        android:text="Please enter your information below. In order to get you at your prime drinking state we need as accurate of information as possible. Don't worry we aren't selling your info to the government, just some programmers trying to calcuate your BAC."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -26,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
+        android:theme="@style/TextAppearance.Pretty"
         android:text="Gender: "
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/personalnfo" />
@@ -36,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
+        android:theme="@style/TextAppearance.Pretty"
         android:text="Weight: "
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gender" />
@@ -46,6 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
+        android:theme="@style/TextAppearance.Pretty"
         android:text="Age: "
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/weight" />
@@ -55,6 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:theme="@style/Buttons.whiteBlue"
         android:text="Update Information"
         android:onClick="onUpdateUserProfileClick"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,6 +72,7 @@
         android:layout_width="137dp"
         android:layout_height="25dp"
         android:layout_marginTop="40dp"
+        android:theme="@style/TextAppearance.Pretty"
         android:text="@string/genderFireFilled"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/gender"
@@ -76,6 +83,7 @@
         android:layout_width="137dp"
         android:layout_height="22dp"
         android:layout_marginTop="20dp"
+        android:theme="@style/TextAppearance.Pretty"
         android:text="@string/weightFireFilled"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/weight"
@@ -87,6 +95,7 @@
         android:layout_height="23dp"
         android:layout_marginTop="20dp"
         android:text="@string/ageFireFilled"
+        android:theme="@style/TextAppearance.Pretty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/age"
         app:layout_constraintTop_toBottomOf="@+id/weightFireFilled" />
