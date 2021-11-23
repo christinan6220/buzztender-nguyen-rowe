@@ -5,7 +5,7 @@
       <map>
         <entry key="app/src/main/res/layout/activity_games_available.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_specific_game.xml" value="0.41301955379781596" />
+        <entry key="app/src/main/res/layout/activity_specific_game.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_user_bacinfo.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_user_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_welcome_page.xml" value="0.22554347826086957" />

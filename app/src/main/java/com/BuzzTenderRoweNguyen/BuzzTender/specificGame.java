@@ -1,5 +1,6 @@
 package com.BuzzTenderRoweNguyen.BuzzTender;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -16,6 +17,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class specificGame extends AppCompatActivity {
 
     private CardView descriptionCard;
@@ -23,7 +31,17 @@ public class specificGame extends AppCompatActivity {
     private ImageButton descriptionArrow, newGameArrow;
     private ConstraintLayout newGameHidden;
 
-    private EditText spiritInput, beerInput, wineInput, hoursInput, spirit;
+    private EditText spiritInput, beerInput, wineInput, hoursInput;
+
+    private final FirebaseFirestore mDb = FirebaseFirestore.getInstance();
+    private static final String TAG = "specificGame.java";
+    private static final String USERS = "users";
+    private FirebaseAuth mAuth;
+
+    String currentUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+    private User userObj;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +68,8 @@ public class specificGame extends AppCompatActivity {
         wineInput = findViewById(R.id.wineInput);
         hoursInput = findViewById(R.id.hoursInput);
 
-
-
         setClickListeners();
+        getUserObject();
     }
 
     private void setClickListeners() {
@@ -116,7 +133,7 @@ public class specificGame extends AppCompatActivity {
 
     public void BACCalculator(){
         //empty variable for gender
-        int r = 0;
+        double r = 0;
         //empty variable to find grams drank
         int grams = 0;
         //hours elapsed
@@ -134,15 +151,15 @@ public class specificGame extends AppCompatActivity {
         EditText hours = findViewById(R.id.hoursInput);
         Integer Chours = Integer.parseInt(hours.getText().toString());
         TextView BAC = findViewById(R.id.currentBAC);
-        String gender = userBACInfo.user_gender;
-        double weight = Integer.parseInt(userBACInfo.user_weight);
+        String gender = userObj.getGender();
+        Integer weight = userObj.getWeight();
 
         //find the constant depending on gender
         if (gender.equals("Female")){
-            r = (int) 0.55;
+            r = 0.55;
         }
         else {
-            r = (int) 0.68;
+            r = 0.68;
         }
 
         //find the calculation in grams of each alcohol
@@ -152,7 +169,7 @@ public class specificGame extends AppCompatActivity {
         grams = Cspirit + Cbeer + Cwine;
 
         //calculate the body weight in grams
-        weight= weight/0.0022046;
+        double newWeight= (double) weight/0.0022046;
 
         //calculate the hours
         hours2 = (int) (Chours*0.015);
@@ -164,7 +181,7 @@ public class specificGame extends AppCompatActivity {
         BAC2 = (int) (BAC2 - hours2);
 
         //show the BAC
-        BAC.setText(BAC2);
+        BAC.setText(String.valueOf(BAC2));
 
     }
 
@@ -184,5 +201,32 @@ public class specificGame extends AppCompatActivity {
         else {
             BACCalculator();
         }
+    }
+
+    private void getUserObject() {
+        DocumentReference docRef = mDb.collection(USERS).document(currentUID);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        // convert document to user obj
+                        userObj = document.toObject(User.class);
+                        Log.d(TAG, "onComplete: getuserobject " + userObj.getWeight());
+
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+    }
+
+    public void testOnClick() {
+        Log.d(TAG, "testClick: i clicked calculate" + userObj.getGender() + " " + userObj.getWeight());
     }
 }
