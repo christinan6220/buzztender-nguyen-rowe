@@ -23,7 +23,7 @@ public class specificGame extends AppCompatActivity {
     private ImageButton descriptionArrow, newGameArrow;
     private ConstraintLayout newGameHidden;
 
-    private EditText spiritInput, beerInput, wineInput, hoursInput;
+    private EditText spiritInput, beerInput, wineInput, hoursInput, spirit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,14 @@ public class specificGame extends AppCompatActivity {
         newGameCard = findViewById(R.id.new_game_visible);
         newGameHidden = findViewById(R.id.lets_play_hidden);
         newGameArrow = findViewById(R.id.new_game_arrow);
+
+
+        spiritInput = findViewById(R.id.spiritInput);
+        beerInput = findViewById(R.id.beerInput);
+        wineInput = findViewById(R.id.wineInput);
+        hoursInput = findViewById(R.id.hoursInput);
+
+
 
         setClickListeners();
     }
@@ -105,6 +113,7 @@ public class specificGame extends AppCompatActivity {
             }
         });
     }
+
     public void BACCalculator(){
         //empty variable for gender
         int r = 0;
@@ -118,7 +127,7 @@ public class specificGame extends AppCompatActivity {
         //grab each of the users inputs to calculate BAC
         EditText spirit = findViewById(R.id.spiritInput);
         Integer Cspirit = Integer.parseInt(spirit.getText().toString());
-        EditText beer = findViewById(R.id.beerInput);
+        EditText beer =  findViewById(R.id.beerInput);
         Integer Cbeer = Integer.parseInt(beer.getText().toString());
         EditText wine = findViewById(R.id.wineInput);
         Integer Cwine = Integer.parseInt(wine.getText().toString());

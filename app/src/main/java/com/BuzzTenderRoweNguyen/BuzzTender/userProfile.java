@@ -122,6 +122,7 @@ public class userProfile extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.toolbar_buttons, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
