@@ -34,5 +34,8 @@
     <string name="hint_lbs">lbs</string>
     <string name="hint_years">Years</string>
 
+    <!--    Games Available Acitivity   -->
+    <string name="games_avail_header">Select a game to play or learn more:</string>
+
 
 </resources>

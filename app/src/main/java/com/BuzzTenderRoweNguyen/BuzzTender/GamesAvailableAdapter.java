@@ -51,7 +51,7 @@ public class GamesAvailableAdapter extends RecyclerView.Adapter<GamesAvailableAd
             super(itemView);
             layout = itemView;
             gameName = layout.findViewById(R.id.game_name);
-            gameImage = layout.findViewById(R.id.game_banner);
+//            gameImage = layout.findViewById(R.id.game_banner);
 
             mDb.collection(GAMES)
                     .get()
