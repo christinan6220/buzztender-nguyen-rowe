@@ -19,6 +19,7 @@
 
     <!--    Welcome Page Activity   -->
     <string name="player_profile_button">Player Profile</string>
+    <string name="welcome_description">Welcome to Buzztender! The application that helps you improve at games through drinking alcohol. Sometimes liquid courage is needed to improve. All you need to do is enter your information in your profile, and choose a game that you wanna be great in. Then Drink up! This application cacluates that optimum amount of drinks you should have per hour to be fantastic at your drinking activity. We also let you log previous games with the amount of alcohol to see what works best for you. Happy drinking and happy playing from your Buzztender community.</string>
 
     <!--    User Profile Activity   -->
     <string name="gender">Gender:</string>
@@ -32,5 +33,6 @@
     </string-array>
     <string name="hint_lbs">lbs</string>
     <string name="hint_years">Years</string>
+
 
 </resources>

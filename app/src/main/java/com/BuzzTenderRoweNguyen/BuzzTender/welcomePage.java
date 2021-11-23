@@ -66,6 +66,5 @@ public class welcomePage extends AppCompatActivity {
     }
     public void onBackPressed(){
         Toast.makeText(welcomePage.this,"There is no back action, try Logout instead", Toast.LENGTH_LONG).show();
-        return;
     }
 }

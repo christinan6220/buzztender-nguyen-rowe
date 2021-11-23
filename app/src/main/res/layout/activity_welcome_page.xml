@@ -17,7 +17,7 @@
         android:gravity="left"
         android:layout_marginTop="20dp"
         android:theme="@style/TextAppearance.Pretty"
-        android:text="Welcome to Buzztender! The application that helps you improve at games through drinking alcohol. Sometimes liquid courage is needed to improve. All you need to do is enter your information in your profile, and choose a game that you wanna be great in. Then Drink up! This application cacluates that optimum amount of drinks you should have per hour to be fantastic at your drinking activity. We also let you log previous games with the amount of alcohol to see what works best for you. Happy drinking and happy playing from your Buzztender community."
+        android:text="@string/welcome_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -31,7 +31,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:src="@drawable/welcome_image"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeIntro" />
+        app:layout_constraintTop_toBottomOf="@+id/welcomeIntro"
+        android:contentDescription="welcome" />
 
     <Button
         android:id="@+id/personalInfo"

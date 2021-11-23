@@ -52,5 +52,10 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-storage'
     implementation 'com.google.firebase:firebase-firestore'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.firebase:firebase-database:20.0.2'
+
+    implementation 'com.firebaseui:firebase-ui-firestore:8.0.0'
+    implementation 'com.firebaseui:firebase-ui-storage:8.0.0'
 
 }

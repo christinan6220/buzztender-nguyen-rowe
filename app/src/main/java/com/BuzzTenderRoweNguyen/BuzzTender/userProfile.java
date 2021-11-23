@@ -149,7 +149,6 @@ public class userProfile extends AppCompatActivity {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                         // convert document to user obj
                         User userObj = document.toObject(User.class);
-
                         // populate textfields
                         assert userObj != null;
                         weight.setText(String.valueOf(userObj.getWeight()));
