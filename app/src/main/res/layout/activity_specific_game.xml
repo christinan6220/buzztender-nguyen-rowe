@@ -11,140 +11,267 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar_main" />
 
-    <TextView
-        android:id="@+id/userBACText"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
-        android:text="Your BAC to maintain: "
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:layout_margin="10dp">
 
-    <TextView
-        android:id="@+id/userBAC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/userBACText"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        <TextView
+            android:id="@+id/game_header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:textSize="24dp"
+            android:text="header example"/>
 
-    <TextView
-        android:id="@+id/BACDescription"
-        android:layout_width="369dp"
-        android:layout_height="93dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
-        android:text="Above is the optimal BAC level you should try to maintain for this game. Below we have included a BAC calculator to help you out! For reference, one spirit contains one shot, one beer is around 5%, and wine is 12% so add your drinks accordingly. Also, hours is the hours passed since you started drinking."
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userBACText" />
+<!--        Description card view -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/game_description_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="4dp"
+            android:layout_margin="4dp"
+            app:layout_constraintTop_toBottomOf="@id/game_header"
+            app:layout_constraintStart_toStartOf="parent">
 
-    <TextView
-        android:id="@+id/BACCalculator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
-        android:text="Calculator:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BACDescription" />
+<!--            for the entire card both visible and hidden elements-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
 
-    <TextView
-        android:id="@+id/Spirit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
-        android:text="Spirit(s): "
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BACCalculator" />
+                <LinearLayout
+                    android:id="@+id/description_visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_margin="12dp">
 
-    <TextView
-        android:id="@+id/Beer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:text="Beer(s): "
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Spirit" />
+                    <TextView
+                        android:text="@string/description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"/>
 
-    <TextView
-        android:id="@+id/Wine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:text="Wine(s): "
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Beer" />
+                    <ImageButton
+                        android:id="@+id/description_expandable_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_expand_more_24"
+                        android:background="@color/white"/>
 
-    <EditText
-        android:id="@+id/spiritInput"
-        android:layout_width="56dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toEndOf="@+id/Spirit"
-        app:layout_constraintTop_toBottomOf="@+id/BACCalculator" />
+                </LinearLayout>
 
-    <EditText
-        android:id="@+id/beerInput"
-        android:layout_width="65dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toEndOf="@+id/Beer"
-        app:layout_constraintTop_toBottomOf="@+id/spiritInput" />
+<!--                Just the hidden elements-->
+                <LinearLayout
+                    android:id="@+id/description_hidden"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/description_visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_margin="12dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/description_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Some kinda goobbledigook "/>
 
-    <EditText
-        android:id="@+id/wineInput"
-        android:layout_width="58dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toEndOf="@+id/Wine"
-        app:layout_constraintTop_toBottomOf="@+id/beerInput" />
+                </LinearLayout>
 
-    <Button
-        android:id="@+id/calculate"
-        android:layout_width="89dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Calculate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hours" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/currentBAC"
-        android:layout_width="149dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/calculate"
-        app:layout_constraintTop_toBottomOf="@+id/hoursInput" />
+        </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/hours"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:text="Hour(s): "
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Wine" />
+<!--        New game card view -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/new_game_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="4dp"
+            android:layout_margin="4dp"
+            app:layout_constraintTop_toBottomOf="@+id/game_description_card"
+            app:layout_constraintStart_toStartOf="parent">
 
-    <EditText
-        android:id="@+id/hoursInput"
-        android:layout_width="62dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toEndOf="@+id/hours"
-        app:layout_constraintTop_toBottomOf="@+id/wineInput" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+
+                <!--            Visible and invisible elements-->
+                <LinearLayout
+                    android:id="@+id/new_game_visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_margin="12dp">
+
+                    <TextView
+                        android:id="@+id/lets_play_label"
+                        android:text="@string/lets_play"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"/>
+
+                    <ImageButton
+                        android:id="@+id/new_game_arrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_expand_more_24"
+                        android:background="@color/white"
+                        android:contentDescription="@string/arrow_button" />
+
+                </LinearLayout>
+                <!--            Hidden elements-->
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/lets_play_hidden"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/new_game_visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_margin="12dp">
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="test test test test test "-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/new_game_visible"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"/>-->
+                        <TextView
+                            android:id="@+id/userBACText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/your_bac_to_maintain"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/userBAC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:text="TextView"
+                            app:layout_constraintStart_toEndOf="@+id/userBACText"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/BACDescription"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/above_is_the_optimal_bac_level_you_should_try_to_maintain_for_this_game_below_we_have_included_a_bac_calculator_to_help_you_out_for_reference_one_spirit_contains_one_shot_one_beer_is_around_5_and_wine_is_12_so_add_your_drinks_accordingly_also_hours_is_the_hours_passed_since_you_started_drinking"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/userBACText" />
+
+                        <TextView
+                            android:id="@+id/BACCalculator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/calculator"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/BACDescription" />
+
+                        <TextView
+                            android:id="@+id/Spirit"
+                            style="@style/liquor_label"
+                            android:text="@string/spirit_s"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@+id/spiritInput" />
+
+                        <TextView
+                            android:id="@+id/Beer"
+                            style="@style/liquor_label"
+                            android:text="@string/beer_s"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@+id/beerInput" />
+
+                        <TextView
+                            android:id="@+id/Wine"
+                            style="@style/liquor_label"
+                            android:text="@string/wine_s"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@+id/wineInput" />
+
+                        <TextView
+                            android:id="@+id/hours"
+                            style="@style/liquor_label"
+                            android:text="@string/hour_s"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@+id/hoursInput" />
+
+                        <EditText
+                            android:id="@+id/spiritInput"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="10dp"
+                            app:layout_constraintStart_toEndOf="@+id/Spirit"
+                            app:layout_constraintTop_toBottomOf="@+id/BACCalculator"
+                            app:layout_constraintBottom_toBottomOf="@+id/Spirit"
+                            android:hint="2345"
+                            android:textSize="14sp"
+                            />
+
+                        <EditText
+                            android:id="@+id/beerInput"
+                            style="@style/liquor_input_style"
+                            app:layout_constraintStart_toEndOf="@+id/Beer"
+                            app:layout_constraintTop_toBottomOf="@+id/spiritInput"
+                            app:layout_constraintStart_toStartOf="@+id/spiritInput" />
+
+                        <EditText
+                            android:id="@+id/wineInput"
+                            style="@style/liquor_input_style"
+                            app:layout_constraintStart_toStartOf="@+id/beerInput"
+                            app:layout_constraintTop_toBottomOf="@+id/beerInput"/>
+
+                        <EditText
+                            android:id="@+id/hoursInput"
+                            style="@style/liquor_input_style"
+                            app:layout_constraintStart_toStartOf="@+id/wineInput"
+                            app:layout_constraintTop_toBottomOf="@+id/wineInput"
+                            android:inputType="number"/>
+
+
+                        <Button
+                            android:id="@+id/calculate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/calculate"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/hours" />
+
+                        <TextView
+                            android:id="@+id/currentBAC"
+                            android:layout_width="149dp"
+                            android:layout_height="38dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="20dp"
+                            android:text="TextView"
+                            app:layout_constraintStart_toEndOf="@+id/calculate"
+                            app:layout_constraintTop_toBottomOf="@+id/hoursInput" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

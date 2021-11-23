@@ -17,7 +17,7 @@
         android:layout_marginTop="20dp"
         android:gravity="left"
         android:theme="@style/TextAppearance.Pretty"
-        android:text="Please enter your information below. In order to get you at your prime drinking state we need as accurate of information as possible. Don't worry we aren't selling your info to the government, just some programmers trying to calcuate your BAC."
+        android:text="@string/bac_calc_info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -29,7 +29,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:theme="@style/TextAppearance.Pretty"
-        android:text="Gender: "
+        android:text="@string/gender"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/personalnfo" />
 
@@ -40,7 +40,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:theme="@style/TextAppearance.Pretty"
-        android:text="Weight: "
+        android:text="@string/weight"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gender" />
 
@@ -51,7 +51,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:theme="@style/TextAppearance.Pretty"
-        android:text="Age: "
+        android:text="@string/age"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/weight" />
 

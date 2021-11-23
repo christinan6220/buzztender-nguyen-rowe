@@ -1,4 +1,6 @@
 <resources>
+
+    <!--    Main Activity Login     -->
     <string name="app_name">Firebase Authentication Example</string>
     <string name="email">Email</string>
     <string name="password_label">Password</string>
@@ -21,7 +23,7 @@
     <string name="player_profile_button">Player Profile</string>
     <string name="welcome_description">Welcome to Buzztender! The application that helps you improve at games through drinking alcohol. Sometimes liquid courage is needed to improve. All you need to do is enter your information in your profile, and choose a game that you wanna be great in. Then Drink up! This application cacluates that optimum amount of drinks you should have per hour to be fantastic at your drinking activity. We also let you log previous games with the amount of alcohol to see what works best for you. Happy drinking and happy playing from your Buzztender community.</string>
 
-    <!--    User Profile Activity   -->
+    <!--    User Profile Activity    -->
     <string name="gender">Gender:</string>
     <string name="weight">Weight:</string>
     <string name="age">Age:</string>
@@ -34,8 +36,22 @@
     <string name="hint_lbs">lbs</string>
     <string name="hint_years">Years</string>
 
-    <!--    Games Available Acitivity   -->
+    <!--    Games Available Acitivity    -->
     <string name="games_avail_header">Select a game to play or learn more:</string>
+
+    <!--    Specific Game Activity      -->
+    <string name="bac_calc_info">Please enter your information below. In order to get you at your prime drinking state we need as accurate of information as possible. Don\'t worry we aren\'t selling your info to the government, just some programmers trying to calcuate your BAC.</string>
+    <string name="description">Description</string>
+    <string name="lets_play">Lets play...</string>
+    <string name="arrow_button">arrowbutton</string>
+    <string name="your_bac_to_maintain">Your BAC to maintain:</string>
+    <string name="above_is_the_optimal_bac_level_you_should_try_to_maintain_for_this_game_below_we_have_included_a_bac_calculator_to_help_you_out_for_reference_one_spirit_contains_one_shot_one_beer_is_around_5_and_wine_is_12_so_add_your_drinks_accordingly_also_hours_is_the_hours_passed_since_you_started_drinking">Above is the optimal BAC level you should try to maintain for this game. Below we have included a BAC calculator to help you out! For reference, one spirit contains one shot, one beer is around 5%, and wine is 12% so add your drinks accordingly. Also, hours is the hours passed since you started drinking.</string>
+    <string name="calculator">Calculator:</string>
+    <string name="spirit_s">Spirit(s):</string>
+    <string name="beer_s">Beer(s):</string>
+    <string name="wine_s">Wine(s):</string>
+    <string name="hour_s">Hour(s):</string>
+    <string name="calculate">Calculate</string>
 
 
 </resources>
