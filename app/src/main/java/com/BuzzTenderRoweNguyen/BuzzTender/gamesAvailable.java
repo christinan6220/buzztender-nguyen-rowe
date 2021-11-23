@@ -77,6 +77,24 @@ public class gamesAvailable extends AppCompatActivity {
 
     }
 
+    protected void onStart() {
+        super.onStart();
+        mAdapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mAdapter != null) {
+            mAdapter.stopListening();
+        }
+    }
+
+    public void onGameCardClick(View view) {
+        Intent intent = new Intent(gamesAvailable.this, specificGame.class);
+        startActivity(intent);
+    }
+
 
     class GameAdapter extends ArrayAdapter<Games> {
         ArrayList<Games> games;
@@ -107,18 +125,7 @@ public class gamesAvailable extends AppCompatActivity {
 
     }
 
-    protected void onStart() {
-        super.onStart();
-        mAdapter.startListening();
-    }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (mAdapter != null) {
-            mAdapter.stopListening();
-        }
-    }
 
     //    load games grabs all the game documents from firestore, convert it back to Games obj and puts it in an array
     public void onLoadGamesClick() {
@@ -139,21 +146,5 @@ public class gamesAvailable extends AppCompatActivity {
                 });
     }
 
-    public void testytest() {
-        mDb.collection(GAMES)
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        ArrayList<Games> games = new ArrayList<>();
-                        for (QueryDocumentSnapshot document: queryDocumentSnapshots) {
-                            Games g = document.toObject(Games.class);
-                            games.add(g);
-                            Log.d(TAG, "testytest: " + g.getName() + " " + g.getDescription());
-                        }
-                        adapter.clear();
-                        adapter.addAll(games);
-                    }
-                });
-    }
+
 }
