@@ -37,8 +37,14 @@ public class specificGame extends AppCompatActivity {
         newGameHidden = findViewById(R.id.lets_play_hidden);
         newGameArrow = findViewById(R.id.new_game_arrow);
 
+        setClickListeners();
 
-//        SETTING UP CLICK LISTENERS
+
+
+    }
+
+    private void setClickListeners() {
+        //        SETTING UP CLICK LISTENERS
 //      Click listener for expanding the description card
         descriptionCard.setOnClickListener(new View.OnClickListener() {
             @Override
