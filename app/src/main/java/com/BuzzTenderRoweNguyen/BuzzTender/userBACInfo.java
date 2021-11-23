@@ -50,6 +50,8 @@ public class userBACInfo extends AppCompatActivity {
     public static final String GENDER_KEY = "userGender";
     public static final Integer WEIGHT_KEY = 0;
     public static final Integer AGE_KEY = 0;
+    public static String user_gender = "";
+    public static String user_weight = "";
 
     //FirebaseFirestore mDb = FirebaseFirestore.getInstance();
     //FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -104,12 +106,14 @@ public class userBACInfo extends AppCompatActivity {
                                             String weight = String.valueOf(i.next());
                                             System.out.println(weight);
                                             counter++;
+                                            user_weight = weight;
                                             weightUpload.setText(weight);
                                         }
                                         else if (counter == 1){
                                             String gender = String.valueOf(i.next());
                                             System.out.println(gender);
                                             counter++;
+                                            user_gender = gender;
                                             genderUpload.setText(gender);
                                         }
                                         else {
