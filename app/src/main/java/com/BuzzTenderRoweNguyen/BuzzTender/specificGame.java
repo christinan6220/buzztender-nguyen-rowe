@@ -20,9 +20,16 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class specificGame extends AppCompatActivity {
 
@@ -36,11 +43,13 @@ public class specificGame extends AppCompatActivity {
     private final FirebaseFirestore mDb = FirebaseFirestore.getInstance();
     private static final String TAG = "specificGame.java";
     private static final String USERS = "users";
+    private static final String GAMES = "games";
     private FirebaseAuth mAuth;
 
     String currentUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
     private User userObj;
+    private Games gameObj;
 
 
     @Override
@@ -55,6 +64,14 @@ public class specificGame extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        findViews();
+        setClickListeners();
+        getUserObject();
+        getGameObj();
+    }
+
+    private void findViews() {
+        // finding views for the expandable cards
         descriptionCard = findViewById(R.id.game_description_card);
         descriptionHidden = findViewById(R.id.description_hidden);
         descriptionArrow = findViewById(R.id.description_expandable_button);
@@ -62,14 +79,11 @@ public class specificGame extends AppCompatActivity {
         newGameHidden = findViewById(R.id.lets_play_hidden);
         newGameArrow = findViewById(R.id.new_game_arrow);
 
-
+        // finding views for BAC calculator
         spiritInput = findViewById(R.id.spiritInput);
         beerInput = findViewById(R.id.beerInput);
         wineInput = findViewById(R.id.wineInput);
         hoursInput = findViewById(R.id.hoursInput);
-
-        setClickListeners();
-        getUserObject();
     }
 
     private void setClickListeners() {
@@ -129,6 +143,59 @@ public class specificGame extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void getUserObject() {
+//        grabs the current user object and save it to userObj
+        DocumentReference docRef = mDb.collection(USERS).document(currentUID);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        // convert document to user obj
+                        userObj = document.toObject(User.class);
+                        Log.d(TAG, "onComplete: getuserobject " + userObj.getWeight());
+
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+    }
+
+    private void getGameObj() {
+//        get current game data
+        Task<QuerySnapshot> gameQuery = mDb.collection(GAMES)
+                .whereEqualTo("name", getIntent().getStringExtra("selectedGame"))
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        gameObj = Objects.requireNonNull(task.getResult()).toObjects(Games.class).get(0);
+
+                        // have to call fillTextViews() bc getGameObj is an async function
+                        fillTextViews();
+                    }
+                });
+    }
+
+    private void fillTextViews() {
+        TextView header, description, maintainBAC;
+
+        header = findViewById(R.id.game_header);
+        description = findViewById(R.id.description_text);
+        maintainBAC = findViewById(R.id.maintainBAC);
+
+        header.setText(gameObj.getName());
+        description.setText(gameObj.getDescription());
+        maintainBAC.setText(String.valueOf(gameObj.getBAC()));
+
     }
 
     public void BACCalculator(){
@@ -203,30 +270,4 @@ public class specificGame extends AppCompatActivity {
         }
     }
 
-    private void getUserObject() {
-        DocumentReference docRef = mDb.collection(USERS).document(currentUID);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        // convert document to user obj
-                        userObj = document.toObject(User.class);
-                        Log.d(TAG, "onComplete: getuserobject " + userObj.getWeight());
-
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });
-    }
-
-    public void testOnClick() {
-        Log.d(TAG, "testClick: i clicked calculate" + userObj.getGender() + " " + userObj.getWeight());
-    }
-}
+}   // end of main class

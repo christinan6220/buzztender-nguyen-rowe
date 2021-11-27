@@ -1,5 +1,6 @@
 package com.BuzzTenderRoweNguyen.BuzzTender;
 
+import android.content.Intent;
 import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -49,6 +50,16 @@ public class GamesRecyclerAdapter extends FirestoreRecyclerAdapter<Games, GamesR
             super(v);
             view = v;
             gameName = v.findViewById(R.id.game_name);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d(TAG, "onClick: viewholder on click here is game name:" + gameName.getText().toString());
+                    Intent intent = new Intent(itemView.getContext(), specificGame.class);
+                    intent.putExtra("selectedGame", gameName.getText().toString());
+                    v.getContext().startActivity(intent);
+
+                }
+            });
         }
     }
 
@@ -64,6 +75,7 @@ public class GamesRecyclerAdapter extends FirestoreRecyclerAdapter<Games, GamesR
                 @Override
                 public void onClick(View v) {
                     listener.onItemClick(holder.getAbsoluteAdapterPosition());
+                    Log.d(TAG, "onClick: the position of clicked item is: " );
                 }
             });
         }
@@ -76,4 +88,6 @@ public class GamesRecyclerAdapter extends FirestoreRecyclerAdapter<Games, GamesR
                 .inflate(R.layout.games_available_item_card,parent,false);
         return new GamesViewHolder(v);
     }
+
+
 }

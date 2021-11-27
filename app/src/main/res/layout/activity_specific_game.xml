@@ -22,8 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="20dp"
-            android:textSize="24dp"
-            android:text="header example"/>
+            android:textSize="24sp"/>
 
 <!--        Description card view -->
         <androidx.cardview.widget.CardView
@@ -79,8 +78,7 @@
                     <TextView
                         android:id="@+id/description_text"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Some kinda goobbledigook "/>
+                        android:layout_height="wrap_content"/>
 
                 </LinearLayout>
 
@@ -120,7 +118,7 @@
                         android:text="@string/lets_play"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="18dp"/>
+                        android:textSize="18sp"/>
 
                     <ImageButton
                         android:id="@+id/new_game_arrow"
@@ -157,11 +155,10 @@
                             app:layout_constraintTop_toTopOf="parent"/>
 
                         <TextView
-                            android:id="@+id/userBAC"
+                            android:id="@+id/maintainBAC"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
-                            android:text="TextView"
                             app:layout_constraintStart_toEndOf="@+id/userBACText"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -220,7 +217,7 @@
                             app:layout_constraintStart_toEndOf="@+id/Spirit"
                             app:layout_constraintTop_toBottomOf="@+id/BACCalculator"
                             app:layout_constraintBottom_toBottomOf="@+id/Spirit"
-                            android:hint="2345"
+                            android:inputType="number"
                             android:textSize="14sp"
                             />
 
@@ -261,7 +258,6 @@
                             android:layout_height="38dp"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="20dp"
-                            android:text="TextView"
                             app:layout_constraintStart_toEndOf="@+id/calculate"
                             app:layout_constraintTop_toBottomOf="@+id/hoursInput" />
 
