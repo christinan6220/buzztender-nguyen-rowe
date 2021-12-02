@@ -14,21 +14,19 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class specificGame extends AppCompatActivity {
@@ -68,6 +66,8 @@ public class specificGame extends AppCompatActivity {
         setClickListeners();
         getUserObject();
         getGameObj();
+
+        Log.d(TAG, "onCreate: did the obj save?" + gameObj);
     }
 
     private void findViews() {
@@ -242,7 +242,7 @@ public class specificGame extends AppCompatActivity {
         hours2 = (int) (Chours*0.015);
 
         //calculate BAC
-        BAC2 = (int) ((grams/(weight*r)) *100);
+        BAC2 = (int) ((grams/(newWeight*r)) *100);
 
         //find the last BAC
         BAC2 = (int) (BAC2 - hours2);
@@ -268,6 +268,73 @@ public class specificGame extends AppCompatActivity {
         else {
             BACCalculator();
         }
+    }
+
+    public void calculateBACClick() {
+        //get reference to all EditTexts and change them to strings to ensure they are not empty for Toast
+        String spirit = spiritInput.getText().toString();
+        String beer = beerInput.getText().toString();
+        String wine = wineInput.getText().toString();
+        String hours = hoursInput.getText().toString();
+        if (TextUtils.isEmpty(spirit) || TextUtils.isEmpty(beer) || TextUtils.isEmpty(wine) || TextUtils.isEmpty(hours)){
+            //if something isn't filled out make a toast to show you need to input it
+            // If registration fails, display a message to the user.
+            System.out.println("got here!");
+            Toast.makeText(this, "Please enter information in every field (if you haven't drank anything enter 0) ",
+                    Toast.LENGTH_LONG).show();
+        }
+        else {
+            BACCalculator();
+        }
+    }
+
+    public void saveNewGame(View view) {
+//      private EditText spiritInput, beerInput, wineInput, hoursInput;
+        Spinner result = findViewById(R.id.winLossInput);
+        TextView bac = findViewById(R.id.currentBAC);
+
+        // Check for empty fields
+        if (!checkForEmptyInput()) {
+            Toast.makeText(specificGame.this, "Could not save game, make sure all fields are filled in", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            // Create new completedGame obj and add to it firebase
+            BACCalculator();
+            //        CompletedGame(String game, String nickname, float bac, String result)
+            CompletedGame newGame = new CompletedGame(
+                    currentUID,
+                    getIntent().getStringExtra("selectedGame"),
+                    userObj.getNickname(),
+                    Integer.parseInt(bac.getText().toString()),
+                    result.getSelectedItem().toString() );
+            mDb.collection("completedGames").add(newGame)
+                    .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentReference> task) {
+                            Toast.makeText(specificGame.this, "Saved game successfully!", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Could not save game");
+                            Toast.makeText(specificGame.this, "Failed to save game!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+
+    }
+
+    public boolean checkForEmptyInput() {
+        // Return false if there are empty fields, true if everything is filled out
+
+        String spirit = spiritInput.getText().toString();
+        String beer = beerInput.getText().toString();
+        String wine = wineInput.getText().toString();
+        String hours = hoursInput.getText().toString();
+        Spinner result = findViewById(R.id.winLossInput);
+
+        return !TextUtils.isEmpty(spirit) && !TextUtils.isEmpty(beer) && !TextUtils.isEmpty(wine) && !TextUtils.isEmpty(hours) && result.getSelectedItemPosition() != 0;
     }
 
 }   // end of main class

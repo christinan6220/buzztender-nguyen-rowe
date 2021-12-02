@@ -21,12 +21,18 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">14sp</item>
         <item name="android:inputType">number</item>
-<!--        <item name="android:hint">"1234"</item>-->
+        <item name="android:hint">0</item>
     </style>
     <style name="liquor_label">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingBottom">10dp</item>
+    </style>
+
+    <style name="header_specific_game">
+        <item name="android:textSize">30sp</item>
+        <item name="android:fontFamily">SANS_SERIF</item>
+        <item name="android:textStyle">italic|bold</item>
     </style>
 
 </resources>

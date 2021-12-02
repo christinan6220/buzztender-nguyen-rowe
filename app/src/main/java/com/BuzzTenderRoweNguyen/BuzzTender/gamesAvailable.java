@@ -58,11 +58,8 @@ public class gamesAvailable extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-//        ListView gamesListView = findViewById(R.id.gamesListView);
-//        testytest();
-//        adapter = new GameAdapter(this, new ArrayList<Games>());
-//        gamesListView.setAdapter(adapter);
 
+//        Setting up the recycler view to show all available games
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
 

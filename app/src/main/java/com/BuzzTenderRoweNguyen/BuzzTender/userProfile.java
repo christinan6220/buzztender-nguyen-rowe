@@ -29,6 +29,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.Source;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class userProfile extends AppCompatActivity {
@@ -38,10 +39,10 @@ public class userProfile extends AppCompatActivity {
     private static final String USERS = "users";
     private FirebaseAuth mAuth;
 
-    TextView weight, age;
+    TextView nickname, weight, age;
     Spinner gender;
 
-    String currentUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    String currentUID = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
 
 
     @Override
@@ -50,7 +51,7 @@ public class userProfile extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile);
 
         //get a reference to the toolbar - in order to setup logout functionality
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //create the up functionality in the toolbar
         ActionBar actionBar = getSupportActionBar();
@@ -64,6 +65,7 @@ public class userProfile extends AppCompatActivity {
         final User user = (User)getIntent().getSerializableExtra("user");
 
         //get reference to the TextViews
+        nickname = findViewById(R.id.nicknameFire);
         gender = findViewById(R.id.genderFire);
         weight = findViewById(R.id.weightFire);
         age = findViewById(R.id.ageFire);
@@ -72,19 +74,11 @@ public class userProfile extends AppCompatActivity {
 
 
 
-        //populate the tex
-        // tViews
-        // will keep commented atm bc they crash the app - null vals
-//        TODO: populate fields if they already exist in firebase
-//        gender.setText(user.getGender());
-//        weight.setText(user.getWeight());
-//        age.setText(user.getAge());
-
     }
 
     public void onClickUpdateProfile (View view) {
         // check that all field are filled out - still need to set spinner for gender
-        if (weight.getText().toString().isEmpty() | age.getText().toString().isEmpty() | gender.getSelectedItemPosition() == 0){
+        if (nickname.getText().toString().isEmpty() | weight.getText().toString().isEmpty() | age.getText().toString().isEmpty() | gender.getSelectedItemPosition() == 0){
             Toast.makeText(getApplicationContext(), "Cannot update profile, make sure all fields are filled in.", Toast.LENGTH_SHORT).show();
         } else {
             addUIDDocument();
@@ -94,10 +88,12 @@ public class userProfile extends AppCompatActivity {
         }
     }
 
-//    creates a new user object and adds it to the collection "users"
+//    creates a new user object and adds it to the collection "users", will overwrite data if there
+//      is already a userobj associated with the current uid
 //    document id will be the same as the UID
     public void addUIDDocument() {
         User user = new User(
+                nickname.getText().toString(),
                 gender.getSelectedItem().toString(),
                 Integer.parseInt(weight.getText().toString()),
                 Integer.parseInt(age.getText().toString()));
@@ -138,6 +134,7 @@ public class userProfile extends AppCompatActivity {
         }
     }
 
+
     public void updateProfile() {
 
         DocumentReference docRef = mDb.collection(USERS).document(currentUID);
@@ -152,6 +149,7 @@ public class userProfile extends AppCompatActivity {
                         User userObj = document.toObject(User.class);
                         // populate textfields
                         assert userObj != null;
+                        nickname.setText(String.valueOf(userObj.getNickname()));
                         weight.setText(String.valueOf(userObj.getWeight()));
                         age.setText(String.valueOf(userObj.getAge()));
                         if (userObj.getGender().equals("Male")) {

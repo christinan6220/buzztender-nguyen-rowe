@@ -10,9 +10,9 @@
     <string name="register">Create New Account</string>
     <string name="firestore_button">Launch Firestore Activity</string>
     <string name="logout_toolbar_button">Logout Button</string>
-    <string name="weightFireFilled"></string>
-    <string name="ageFireFilled"></string>
-    <string name="genderFireFilled"></string>
+<!--    <string name="weightFireFilled"></string>-->
+<!--    <string name="ageFireFilled"></string>-->
+<!--    <string name="genderFireFilled"></string>-->
 
     <!--    Authentication Feedback     -->
     <string name="login_successful">Sign-in Successful!</string>
@@ -24,6 +24,7 @@
     <string name="welcome_description">Welcome to Buzztender! The application that helps you improve at games through drinking alcohol. Sometimes liquid courage is needed to improve. All you need to do is enter your information in your profile, and choose a game that you wanna be great in. Then Drink up! This application cacluates that optimum amount of drinks you should have per hour to be fantastic at your drinking activity. We also let you log previous games with the amount of alcohol to see what works best for you. Happy drinking and happy playing from your Buzztender community.</string>
 
     <!--    User Profile Activity    -->
+    <string name="nickname">Nickname: </string>
     <string name="gender">Gender:</string>
     <string name="weight">Weight:</string>
     <string name="age">Age:</string>
@@ -51,7 +52,16 @@
     <string name="beer_s">Beer(s):</string>
     <string name="wine_s">Wine(s):</string>
     <string name="hour_s">Hour(s):</string>
+    <string-array name="win_lose_array">
+        <item>Select one:</item>
+        <item>Win</item>
+        <item>Loss</item>
+        <item>Just for fun</item>
+    </string-array>
     <string name="calculate">Calculate</string>
+    <string name="save_game">Save Game</string>
+    <string name="win_loss">Win/Lose:</string>
+    <string name="global_games">Global Games</string>
 
 
 </resources>

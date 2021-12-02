@@ -11,6 +11,17 @@
         android:id="@+id/toolbar" />
 
     <TextView
+        android:id="@+id/nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:text="@string/nickname"/>
+
+
+    <TextView
         android:id="@+id/userGender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +30,7 @@
         android:theme="@style/TextAppearance.Pretty"
         android:text="@string/gender"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/nickname" />
 
     <TextView
         android:id="@+id/userWeight"
@@ -43,6 +54,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userWeight" />
 
+    <EditText
+        android:id="@+id/nicknameFire"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toEndOf="@+id/nickname"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
     <Spinner
         android:id="@+id/genderFire"
         android:layout_width="wrap_content"
@@ -50,7 +70,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         app:layout_constraintStart_toEndOf="@+id/userGender"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/nicknameFire"
         android:entries="@array/gender_array"/>
 
     <EditText

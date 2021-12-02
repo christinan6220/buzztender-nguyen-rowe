@@ -3,37 +3,34 @@ package com.BuzzTenderRoweNguyen.BuzzTender;
 public class CompletedGame {
 
     private String game;
-    private String uid;
+    String uid;
+    private String nickname;
     private float bac;
     private String result;
 
     public CompletedGame() {
     }
 
-    public CompletedGame(String game, String uid, float bac, String result) {
-        this.game = game;
+    public CompletedGame(String uid, String game, String nickname, float bac, String result) {
         this.uid = uid;
+        this.game = game;
+        this.nickname = nickname;
         this.bac = bac;
         this.result = result;
     }
 
 
 //    GETTERS
-    public String getGame() { return game; }
-
     public String getUid() { return uid; }
-
+    public String getGame() { return game; }
+    public String getNickname() { return nickname; }
     public float getBac() { return bac; }
-
     public String getResult() { return result; }
 
 //    SETTERS
     public void setGame(String game) { this.game = game; }
-
-    public void setUid(String uid) { this.uid = uid; }
-
+    public void setNickname(String nickname) { this.nickname = nickname; }
     public void setBac(float bac) { this.bac = bac; }
-
     public void setResult(String result) { this.result = result; }
 
 

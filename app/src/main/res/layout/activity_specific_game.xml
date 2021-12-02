@@ -1,151 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/BAC"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".specificGame">
+    android:clipToPadding="false">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar_main" />
 
+<!--    outer parent constraint layout-->
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/BAC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        android:layout_margin="10dp">
+        android:layout_marginBottom="30dp"
+        tools:context=".specificGame">
 
-        <TextView
-            android:id="@+id/game_header"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="20dp"
-            android:textSize="24sp"/>
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_main" />
 
-<!--        Description card view -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/game_description_card"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardElevation="4dp"
-            app:cardCornerRadius="4dp"
-            android:clipToPadding="false"
-            android:layout_margin="4dp"
-            app:layout_constraintTop_toBottomOf="@id/game_header"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            android:layout_margin="10dp">
 
-<!--            for the entire card both visible and hidden elements-->
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:id="@+id/game_header"
+                style="@style/header_specific_game"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="5dp"/>
+
+            <!--        Description card view -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/game_description_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp">
+                app:cardElevation="4dp"
+                app:cardCornerRadius="4dp"
+                android:clipToPadding="false"
+                android:layout_margin="4dp"
+                app:layout_constraintTop_toBottomOf="@id/game_header"
+                app:layout_constraintStart_toStartOf="parent">
 
-                <LinearLayout
-                    android:id="@+id/description_visible"
+                <!--            for the entire card both visible and hidden elements-->
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_margin="12dp">
+                    android:layout_marginBottom="12dp">
 
-                    <TextView
-                        android:text="@string/description"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"/>
-
-                    <ImageButton
-                        android:id="@+id/description_expandable_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_expand_more_24"
-                        android:background="@color/white"/>
-
-                </LinearLayout>
-
-<!--                Just the hidden elements-->
-                <LinearLayout
-                    android:id="@+id/description_hidden"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/description_visible"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_margin="12dp"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/description_text"
+                    <LinearLayout
+                        android:id="@+id/description_visible"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_margin="12dp">
 
-                </LinearLayout>
+                        <TextView
+                            android:text="@string/description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"/>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                        <ImageButton
+                            android:id="@+id/description_expandable_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_expand_more_24"
+                            android:background="@color/white"/>
 
-        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
 
-<!--        New game card view -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/new_game_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardElevation="4dp"
-            app:cardCornerRadius="4dp"
-            android:clipToPadding="false"
-            android:layout_margin="4dp"
-            app:layout_constraintTop_toBottomOf="@+id/game_description_card"
-            app:layout_constraintStart_toStartOf="parent">
+                    <!--                Just the hidden elements-->
+                    <LinearLayout
+                        android:id="@+id/description_hidden"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/description_visible"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_margin="12dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/description_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!--        New game card view -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/new_game_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp">
-
-                <!--            Visible and invisible elements-->
-                <LinearLayout
-                    android:id="@+id/new_game_visible"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_margin="12dp">
-
-                    <TextView
-                        android:id="@+id/lets_play_label"
-                        android:text="@string/lets_play"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"/>
-
-                    <ImageButton
-                        android:id="@+id/new_game_arrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_expand_more_24"
-                        android:background="@color/white"
-                        android:contentDescription="@string/arrow_button" />
-
-                </LinearLayout>
-                <!--            Hidden elements-->
-
+                app:cardElevation="4dp"
+                app:cardCornerRadius="4dp"
+                android:clipToPadding="false"
+                android:layout_margin="4dp"
+                app:layout_constraintTop_toBottomOf="@+id/game_description_card"
+                app:layout_constraintStart_toStartOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/lets_play_hidden"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@+id/new_game_visible"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_margin="12dp">
+                    android:layout_marginBottom="12dp">
 
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="test test test test test "-->
-<!--                        app:layout_constraintTop_toBottomOf="@+id/new_game_visible"-->
-<!--                        app:layout_constraintStart_toStartOf="parent"/>-->
+                    <!--            Visible and invisible elements-->
+                    <LinearLayout
+                        android:id="@+id/new_game_visible"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_margin="12dp">
+
+                        <TextView
+                            android:id="@+id/lets_play_label"
+                            android:text="@string/lets_play"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"/>
+
+                        <ImageButton
+                            android:id="@+id/new_game_arrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_expand_more_24"
+                            android:background="@color/white"
+                            android:contentDescription="@string/arrow_button" />
+
+                    </LinearLayout>
+
+                    <!--            Hidden elements-->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/lets_play_hidden"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@+id/new_game_visible"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_margin="12dp">
+
                         <TextView
                             android:id="@+id/userBACText"
                             android:layout_width="wrap_content"
@@ -180,6 +184,8 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/BACDescription" />
 
+
+<!--                        Liquor labels   -->
                         <TextView
                             android:id="@+id/Spirit"
                             style="@style/liquor_label"
@@ -208,18 +214,28 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toBottomOf="@+id/hoursInput" />
 
+                        <TextView
+                            android:id="@+id/winLoss"
+                            style="@style/liquor_label"
+                            android:text="@string/win_loss"
+                            android:layout_marginTop="20dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/hours"
+                            />
+
+<!--                        Liquor inputs   -->
                         <EditText
                             android:id="@+id/spiritInput"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
+                            android:layout_marginStart="20dp"
                             android:layout_marginTop="10dp"
                             app:layout_constraintStart_toEndOf="@+id/Spirit"
                             app:layout_constraintTop_toBottomOf="@+id/BACCalculator"
                             app:layout_constraintBottom_toBottomOf="@+id/Spirit"
                             android:inputType="number"
                             android:textSize="14sp"
-                            />
+                            android:hint="0" />
 
                         <EditText
                             android:id="@+id/beerInput"
@@ -242,6 +258,17 @@
                             android:inputType="number"/>
 
 
+
+                        <Spinner
+                            android:id="@+id/winLossInput"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/win_lose_array"
+                            app:layout_constraintStart_toStartOf="@+id/hoursInput"
+                            app:layout_constraintTop_toTopOf="@id/winLoss"
+                            />
+
+
                         <Button
                             android:id="@+id/calculate"
                             android:layout_width="wrap_content"
@@ -250,27 +277,54 @@
                             android:text="@string/calculate"
                             android:onClick="calculateBACClick"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/hours" />
+                            app:layout_constraintTop_toBottomOf="@+id/winLoss" />
 
                         <TextView
                             android:id="@+id/currentBAC"
-                            android:layout_width="149dp"
-                            android:layout_height="38dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="20dp"
                             app:layout_constraintStart_toEndOf="@+id/calculate"
-                            app:layout_constraintTop_toBottomOf="@+id/hoursInput" />
+                            app:layout_constraintTop_toBottomOf="@+id/winLossInput" />
 
+                        <Button
+                            android:id="@+id/saveGame"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="10dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/calculate"
+                            app:layout_constraintEnd_toEndOf="@id/calculate"
+                            android:text="@string/save_game"
+                            android:onClick="saveNewGame"/>
 
+                        <!-- end of hidden element layout-->
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- end of whole card constraint layout-->
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- end of new game card-->
+            </androidx.cardview.widget.CardView>
 
-        </androidx.cardview.widget.CardView>
+            <!--        TODO: recycler view for global previous games -->
 
+        <TextView
+            android:id="@+id/globalGames"
+            style="@style/header_specific_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/global_games"
+            app:layout_constraintTop_toBottomOf="@+id/new_game_card"
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
