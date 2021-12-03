@@ -11,101 +11,101 @@
         android:id="@+id/toolbar" />
 
     <TextView
-        android:id="@+id/nickname"
+        android:id="@+id/update_profile_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:paddingHorizontal="40dp"
+        android:text="@string/update_profile_description"
         android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        android:text="@string/nickname"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
-    <TextView
-        android:id="@+id/userGender"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/update_profile_constraint_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:theme="@style/TextAppearance.Pretty"
-        android:text="@string/gender"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nickname" />
-
-    <TextView
-        android:id="@+id/userWeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:theme="@style/TextAppearance.Pretty"
-        android:text="@string/weight"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userGender" />
-
-    <TextView
-        android:id="@+id/userAge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:theme="@style/TextAppearance.Pretty"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="36dp"
-        android:text="@string/age"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userWeight" />
-
-    <EditText
-        android:id="@+id/nicknameFire"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintStart_toEndOf="@+id/nickname"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <Spinner
-        android:id="@+id/genderFire"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toEndOf="@+id/userGender"
-        app:layout_constraintTop_toBottomOf="@+id/nicknameFire"
-        android:entries="@array/gender_array"/>
-
-    <EditText
-        android:id="@+id/weightFire"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintStart_toEndOf="@+id/userWeight"
-        app:layout_constraintTop_toBottomOf="@+id/genderFire"
-        android:inputType="number"
-        android:hint="@string/hint_lbs"/>
+        app:layout_constraintTop_toBottomOf="@+id/update_profile_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <EditText
-        android:id="@+id/ageFire"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintStart_toEndOf="@+id/userAge"
-        app:layout_constraintTop_toBottomOf="@+id/weightFire"
-        android:inputType="number"
-        android:hint="@string/hint_years"/>
+        <TextView
+            android:id="@+id/nickname"
+            style="@style/user_profile"
+            android:paddingBottom="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/nickname"/>
+
+
+        <TextView
+            android:id="@+id/userGender"
+            style="@style/user_profile"
+            android:text="@string/gender"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nickname" />
+
+        <TextView
+            android:id="@+id/userWeight"
+            style="@style/user_profile"
+            android:paddingBottom="10dp"
+            android:text="@string/weight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/weightFire" />
+
+        <TextView
+            android:id="@+id/userAge"
+            style="@style/user_profile"
+            android:paddingBottom="10dp"
+            android:text="@string/age"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/ageFire" />
+
+        <EditText
+            android:id="@+id/nicknameFire"
+            style="@style/user_profile"
+            android:layout_marginStart="100dp"
+            app:layout_constraintStart_toEndOf="@+id/nickname"
+            app:layout_constraintBottom_toBottomOf="@+id/nickname" />
+
+        <Spinner
+            android:id="@+id/genderFire"
+            style="@style/user_profile"
+            app:layout_constraintStart_toStartOf="@+id/nicknameFire"
+            app:layout_constraintTop_toBottomOf="@+id/nicknameFire"
+            android:entries="@array/gender_array"/>
+
+        <EditText
+            android:id="@+id/weightFire"
+            style="@style/user_profile"
+            app:layout_constraintStart_toStartOf="@id/nicknameFire"
+            app:layout_constraintTop_toBottomOf="@+id/genderFire"
+            android:inputType="number"
+            android:hint="@string/hint_lbs"/>
+
+        <EditText
+            android:id="@+id/ageFire"
+            style="@style/user_profile"
+            app:layout_constraintStart_toStartOf="@id/nicknameFire"
+            app:layout_constraintTop_toBottomOf="@+id/weightFire"
+            android:inputType="number"
+            android:hint="@string/hint_years"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/updatePlayerProfile"
         android:text="@string/update_profile_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
         android:theme="@style/Buttons.whiteBlue"
-        app:layout_constraintTop_toBottomOf="@+id/ageFire"
-        app:layout_constraintStart_toStartOf="parent"
         android:onClick="onClickUpdateProfile"
-        tools:ignore="UsingOnClickInXml" />
+        tools:ignore="UsingOnClickInXml"
+        app:layout_constraintTop_toBottomOf="@id/update_profile_constraint_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

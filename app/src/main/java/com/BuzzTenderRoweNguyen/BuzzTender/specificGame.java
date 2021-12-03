@@ -73,18 +73,9 @@ public class specificGame extends AppCompatActivity {
         setClickListeners();
         getUserObject();
         getGameObj();
+        setGlobalGamesRecyclerView();
 
-        RecyclerView recyclerView = findViewById(R.id.globalGames_recyclerview);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
-        Query query = mDb.collection("completedGames")
-                .whereEqualTo("game", getIntent().getStringExtra("selectedGame"))
-                .orderBy("createdTime", Query.Direction.DESCENDING);
-        FirestoreRecyclerOptions<CompletedGame> options = new FirestoreRecyclerOptions.Builder<CompletedGame>()
-                .setQuery(query, CompletedGame.class)
-                .build();
 
-        mAdapter = new CompletedGameRecyclerAdapter(options);
-        recyclerView.setAdapter(mAdapter);
 
         Log.d(TAG, "onCreate: did the obj save?" + gameObj);
     }
@@ -116,6 +107,21 @@ public class specificGame extends AppCompatActivity {
         beerInput = findViewById(R.id.beerInput);
         wineInput = findViewById(R.id.wineInput);
         hoursInput = findViewById(R.id.hoursInput);
+    }
+
+    private void setGlobalGamesRecyclerView() {
+        RecyclerView recyclerView = findViewById(R.id.globalGames_recyclerview);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+
+        Query query = mDb.collection("completedGames")
+                .whereEqualTo("game", getIntent().getStringExtra("selectedGame"))
+                .orderBy("createdTime", Query.Direction.DESCENDING);
+        FirestoreRecyclerOptions<CompletedGame> options = new FirestoreRecyclerOptions.Builder<CompletedGame>()
+                .setQuery(query, CompletedGame.class)
+                .build();
+
+        mAdapter = new CompletedGameRecyclerAdapter(options);
+        recyclerView.setAdapter(mAdapter);
     }
 
     private void setClickListeners() {

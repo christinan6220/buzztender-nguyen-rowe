@@ -24,7 +24,7 @@
     <string name="welcome_description">Welcome to Buzztender! The application that helps you improve at games through drinking alcohol. Sometimes liquid courage is needed to improve. All you need to do is enter your information in your profile, and choose a game that you wanna be great in. Then Drink up! This application cacluates that optimum amount of drinks you should have per hour to be fantastic at your drinking activity. We also let you log previous games with the amount of alcohol to see what works best for you. Happy drinking and happy playing from your Buzztender community.</string>
 
     <!--    User Profile Activity    -->
-    <string name="nickname">Nickname: </string>
+    <string name="nickname">Nickname:</string>
     <string name="gender">Gender:</string>
     <string name="weight">Weight:</string>
     <string name="age">Age:</string>
@@ -36,12 +36,13 @@
     </string-array>
     <string name="hint_lbs">lbs</string>
     <string name="hint_years">Years</string>
+    <string name="update_profile_description">This information is used to calculate your blood alcohol content. Enter a value for all the fields and press the update button.</string>
 
     <!--    Games Available Acitivity    -->
     <string name="games_avail_header">Select a game to play or learn more:</string>
 
     <!--    Specific Game Activity      -->
-    <string name="bac_calc_info">Please enter your information below. In order to get you at your prime drinking state we need as accurate of information as possible. Don\'t worry we aren\'t selling your info to the government, just some programmers trying to calcuate your BAC.</string>
+    <string name="bac_calc_info">Please enter your information below. In order to get you at your prime drinking state we need as accurate of information as possible. \n Don\'t worry we aren\'t selling your info to the government, just some programmers trying to calcuate your BAC.</string>
     <string name="description">Description</string>
     <string name="lets_play">Lets play...</string>
     <string name="arrow_button">arrowbutton</string>
@@ -68,6 +69,7 @@
     <string name="cg_nickname">Played by:</string>
     <string name="cg_avg_bac">BAC:</string>
     <string name="cg_result">Result:</string>
+    <string name="buzztender">BuzzTender</string>
 
 
 </resources>
