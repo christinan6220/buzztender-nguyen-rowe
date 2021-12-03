@@ -7,14 +7,14 @@ public class CompletedGame {
     private String game;
     String uid;
     private String nickname;
-    private float bac;
+    private double bac;
     private String result;
     private Date createdTime;
 
     public CompletedGame() {
     }
 
-    public CompletedGame(String uid, String game, String nickname, float bac, String result, Date createdTime) {
+    public CompletedGame(String uid, String game, String nickname, double bac, String result, Date createdTime) {
         this.uid = uid;
         this.game = game;
         this.nickname = nickname;
@@ -28,7 +28,7 @@ public class CompletedGame {
     public String getUid() { return uid; }
     public String getGame() { return game; }
     public String getNickname() { return nickname; }
-    public float getBac() { return bac; }
+    public double getBac() { return bac; }
     public String getResult() { return result; }
     public Date getCreatedTime() { return createdTime; }
 

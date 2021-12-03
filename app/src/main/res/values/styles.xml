@@ -7,15 +7,18 @@
         <item name="colorPrimaryDark">#0A2F7A</item>
         <item name="colorAccent">#EEEE8A</item>
     </style>
+
     <style name="Buttons.whiteBlue" parent= "ThemeOverlay.AppCompat">
         <item name="android:colorButtonNormal">#090F71</item>
         <item name="android:textColor">#F8F9FB</item>
     </style>
+
     <style name="TextAppearance.Pretty" parent="ThemeOverlay.AppCompat" >
         <item name="android:textColor">#000000</item>
         <item name="android:fontFamily">SANS_SERIF</item>
         <item name="android:textSize">14sp</item>
     </style>
+
     <style name="liquor_input_style">
         <item name="android:layout_width">60dp</item>
         <item name="android:layout_height">wrap_content</item>

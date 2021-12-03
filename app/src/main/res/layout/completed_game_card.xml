@@ -22,6 +22,16 @@
             app:layout_constraintStart_toStartOf="parent"
             android:textSize="20sp"/>
 
+        <TextView
+            android:id="@+id/cg_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="12sp"
+            android:textStyle="italic"/>
+
+
 <!--        Default text views-->
         <TextView
             android:id="@+id/cg_nickname"

@@ -220,8 +220,7 @@
                             android:text="@string/win_loss"
                             android:layout_marginTop="20dp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/hours"
-                            />
+                            app:layout_constraintTop_toBottomOf="@id/hours" />
 
 <!--                        Liquor inputs   -->
                         <EditText
@@ -280,13 +279,22 @@
                             app:layout_constraintTop_toBottomOf="@+id/winLoss" />
 
                         <TextView
+                            android:id="@+id/your_bac_label"
+                            style="@style/liquor_label"
+                            app:layout_constraintStart_toEndOf="@+id/calculate"
+                            app:layout_constraintTop_toTopOf="@id/calculate"
+                            app:layout_constraintBottom_toBottomOf="@id/calculate"
+                            android:text="@string/your_bac"
+                            android:layout_marginStart="20dp"
+                            android:visibility="invisible"/>
+
+                        <TextView
                             android:id="@+id/currentBAC"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="20dp"
-                            app:layout_constraintStart_toEndOf="@+id/calculate"
-                            app:layout_constraintTop_toBottomOf="@+id/winLossInput" />
+                            android:layout_marginStart="10dp"
+                            app:layout_constraintStart_toEndOf="@+id/your_bac_label"
+                            app:layout_constraintTop_toTopOf="@+id/your_bac_label" />
 
                         <Button
                             android:id="@+id/saveGame"

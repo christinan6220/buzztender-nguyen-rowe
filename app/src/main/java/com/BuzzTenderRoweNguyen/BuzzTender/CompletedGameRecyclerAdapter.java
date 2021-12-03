@@ -13,6 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.zip.DataFormatException;
+
 public class CompletedGameRecyclerAdapter extends FirestoreRecyclerAdapter<CompletedGame, CompletedGameRecyclerAdapter.CompletedGameViewHolder> {
 
     public interface OnItemClickListener {
@@ -38,6 +42,7 @@ public class CompletedGameRecyclerAdapter extends FirestoreRecyclerAdapter<Compl
         final TextView nickname;
         final TextView userBAC;
         final TextView userResult;
+        final TextView date;
 
         CompletedGameViewHolder(CardView v) {
             super(v);
@@ -46,16 +51,20 @@ public class CompletedGameRecyclerAdapter extends FirestoreRecyclerAdapter<Compl
             nickname = v.findViewById(R.id.cg_user_nickname);
             userBAC = v.findViewById(R.id.cg_user_avg_bac);
             userResult = v.findViewById(R.id.cg_user_result);
+            date = v.findViewById(R.id.cg_date);
         }
 
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     public void onBindViewHolder(CompletedGameViewHolder holder, int position, final CompletedGame cg){
+        String formattedBAC = String.format("%.2f", cg.getBac());
+
         holder.gameName.setText(String.valueOf(cg.getGame()));
         holder.nickname.setText(String.valueOf(cg.getNickname()));
-        holder.userBAC.setText(String.valueOf(cg.getBac()));
+        holder.userBAC.setText(formattedBAC);
         holder.userResult.setText(String.valueOf(cg.getResult()));
+        holder.date.setText(new SimpleDateFormat("dd-MM-yyyy").format(cg.getCreatedTime()));
         if (listener != null) {
             holder.view.setOnClickListener(new View.OnClickListener() {
                 @Override

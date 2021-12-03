@@ -61,6 +61,7 @@
     <string name="calculate">Calculate</string>
     <string name="save_game">Save Game</string>
     <string name="win_loss">Win/Lose:</string>
+    <string name="your_bac">Your BAC is:</string>
     <string name="global_games">Global Games</string>
 
 <!--    Completed Game Card-->

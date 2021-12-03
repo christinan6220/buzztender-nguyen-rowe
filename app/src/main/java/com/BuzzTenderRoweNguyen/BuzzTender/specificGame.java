@@ -78,7 +78,7 @@ public class specificGame extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
         Query query = mDb.collection("completedGames")
                 .whereEqualTo("game", getIntent().getStringExtra("selectedGame"))
-                .orderBy("createdTime", Query.Direction.ASCENDING);
+                .orderBy("createdTime", Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<CompletedGame> options = new FirestoreRecyclerOptions.Builder<CompletedGame>()
                 .setQuery(query, CompletedGame.class)
                 .build();
@@ -234,27 +234,24 @@ public class specificGame extends AppCompatActivity {
         //empty variable for gender
         double r = 0;
         //empty variable to find grams drank
-        int grams = 0;
+        double grams = 0;
         //hours elapsed
         double hours2 = 0;
         //variable with BAC
-        int BAC2 = 0;
+        double BAC2 = 0;
 
         //grab each of the users inputs to calculate BAC
-        EditText spirit = findViewById(R.id.spiritInput);
-        Integer Cspirit = Integer.parseInt(spirit.getText().toString());
-        EditText beer =  findViewById(R.id.beerInput);
-        Integer Cbeer = Integer.parseInt(beer.getText().toString());
-        EditText wine = findViewById(R.id.wineInput);
-        Integer Cwine = Integer.parseInt(wine.getText().toString());
-        EditText hours = findViewById(R.id.hoursInput);
-        Integer Chours = Integer.parseInt(hours.getText().toString());
-        TextView BAC = findViewById(R.id.currentBAC);
+        int Cspirit = Integer.parseInt(spiritInput.getText().toString());
+        int Cbeer = Integer.parseInt(beerInput.getText().toString());
+        int Cwine = Integer.parseInt(wineInput.getText().toString());
+        int Chours = Integer.parseInt(hoursInput.getText().toString());
+
+        TextView currentBAC = findViewById(R.id.currentBAC);
         String gender = userObj.getGender();
-        Integer weight = userObj.getWeight();
+        double weight = userObj.getWeight();
 
         //find the constant depending on gender
-        if (gender.equals("Female")){
+        if (gender.equals("female")){
             r = 0.55;
         }
         else {
@@ -268,19 +265,25 @@ public class specificGame extends AppCompatActivity {
         grams = Cspirit + Cbeer + Cwine;
 
         //calculate the body weight in grams
-        double newWeight= (double) weight/0.0022046;
+        double newWeight = weight/0.0022046;
 
         //calculate the hours
-        hours2 = (int) (Chours*0.015);
+        hours2 =  Chours * 0.015 ;
 
         //calculate BAC
-        BAC2 = (int) ((grams/(newWeight*r)) *100);
+        BAC2 = (grams/(newWeight*r)) * 100;
 
         //find the last BAC
-        BAC2 = (int) (BAC2 - hours2);
+        BAC2 = BAC2 - hours2;
+
+        //format bac to 2 decimal places
+        String calculatedBAC = String.format("%.2f", BAC2);
 
         //show the BAC
-        BAC.setText(String.valueOf(BAC2));
+        currentBAC.setText(calculatedBAC);
+
+        TextView yourBAC = findViewById(R.id.your_bac_label);
+        yourBAC.setVisibility(View.VISIBLE);
 
     }
 
@@ -290,18 +293,19 @@ public class specificGame extends AppCompatActivity {
         String beer = beerInput.getText().toString();
         String wine = wineInput.getText().toString();
         String hours = hoursInput.getText().toString();
-        if (TextUtils.isEmpty(spirit) || TextUtils.isEmpty(beer) || TextUtils.isEmpty(wine) || TextUtils.isEmpty(hours)){
+
+        if (userObj == null){
+            Toast.makeText(specificGame.this, "Could not calculate BAC - Make sure your profile is updated.", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(spirit) || TextUtils.isEmpty(beer) || TextUtils.isEmpty(wine) || TextUtils.isEmpty(hours)){
             //if something isn't filled out make a toast to show you need to input it
             // If registration fails, display a message to the user.
             System.out.println("got here!");
             Toast.makeText(this, "Please enter information in every field (if you haven't drank anything enter 0) ",
                     Toast.LENGTH_LONG).show();
-        }
-        else {
+        } else {
             BACCalculator();
         }
     }
-
 
     public void saveNewGame(View view) {
 //      private EditText spiritInput, beerInput, wineInput, hoursInput;
@@ -309,10 +313,12 @@ public class specificGame extends AppCompatActivity {
         TextView bac = findViewById(R.id.currentBAC);
 
         // Check for empty fields
-        if (!checkForEmptyInput()) {
-            Toast.makeText(specificGame.this, "Could not save game, make sure all fields are filled in", Toast.LENGTH_SHORT).show();
-        }
-        else {
+
+        if (userObj == null){
+            Toast.makeText(specificGame.this, "Could not calculate BAC - Make sure your profile is updated.", Toast.LENGTH_SHORT).show();
+        } else if (!checkForEmptyInput()) {
+            Toast.makeText(specificGame.this, "Could not save game, make sure all fields are filled in.", Toast.LENGTH_SHORT).show();
+        } else {
             // Create new completedGame obj and add to it firebase
             BACCalculator();
             //        CompletedGame(String game, String nickname, float bac, String result)
@@ -320,7 +326,7 @@ public class specificGame extends AppCompatActivity {
                     currentUID,
                     getIntent().getStringExtra("selectedGame"),
                     userObj.getNickname(),
-                    Integer.parseInt(bac.getText().toString()),
+                    Double.parseDouble(bac.getText().toString()),
                     result.getSelectedItem().toString(),
                     new Date());
             mDb.collection("completedGames").add(newGame)
@@ -328,6 +334,7 @@ public class specificGame extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<DocumentReference> task) {
                             Toast.makeText(specificGame.this, "Saved game successfully!", Toast.LENGTH_SHORT).show();
+//                            Todo: refresh adapter on new game
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -343,7 +350,6 @@ public class specificGame extends AppCompatActivity {
 
     public boolean checkForEmptyInput() {
         // Return false if there are empty fields, true if everything is filled out
-
         String spirit = spiritInput.getText().toString();
         String beer = beerInput.getText().toString();
         String wine = wineInput.getText().toString();
