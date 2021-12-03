@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -18,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -25,8 +28,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class specificGame extends AppCompatActivity {
@@ -49,6 +54,8 @@ public class specificGame extends AppCompatActivity {
     private User userObj;
     private Games gameObj;
 
+    private CompletedGameRecyclerAdapter mAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +74,32 @@ public class specificGame extends AppCompatActivity {
         getUserObject();
         getGameObj();
 
+        RecyclerView recyclerView = findViewById(R.id.globalGames_recyclerview);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+        Query query = mDb.collection("completedGames")
+                .whereEqualTo("game", getIntent().getStringExtra("selectedGame"))
+                .orderBy("createdTime", Query.Direction.ASCENDING);
+        FirestoreRecyclerOptions<CompletedGame> options = new FirestoreRecyclerOptions.Builder<CompletedGame>()
+                .setQuery(query, CompletedGame.class)
+                .build();
+
+        mAdapter = new CompletedGameRecyclerAdapter(options);
+        recyclerView.setAdapter(mAdapter);
+
         Log.d(TAG, "onCreate: did the obj save?" + gameObj);
+    }
+
+    protected void onStart() {
+        super.onStart();
+        mAdapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mAdapter != null) {
+            mAdapter.stopListening();
+        }
     }
 
     private void findViews() {
@@ -270,23 +302,6 @@ public class specificGame extends AppCompatActivity {
         }
     }
 
-    public void calculateBACClick() {
-        //get reference to all EditTexts and change them to strings to ensure they are not empty for Toast
-        String spirit = spiritInput.getText().toString();
-        String beer = beerInput.getText().toString();
-        String wine = wineInput.getText().toString();
-        String hours = hoursInput.getText().toString();
-        if (TextUtils.isEmpty(spirit) || TextUtils.isEmpty(beer) || TextUtils.isEmpty(wine) || TextUtils.isEmpty(hours)){
-            //if something isn't filled out make a toast to show you need to input it
-            // If registration fails, display a message to the user.
-            System.out.println("got here!");
-            Toast.makeText(this, "Please enter information in every field (if you haven't drank anything enter 0) ",
-                    Toast.LENGTH_LONG).show();
-        }
-        else {
-            BACCalculator();
-        }
-    }
 
     public void saveNewGame(View view) {
 //      private EditText spiritInput, beerInput, wineInput, hoursInput;
@@ -306,7 +321,8 @@ public class specificGame extends AppCompatActivity {
                     getIntent().getStringExtra("selectedGame"),
                     userObj.getNickname(),
                     Integer.parseInt(bac.getText().toString()),
-                    result.getSelectedItem().toString() );
+                    result.getSelectedItem().toString(),
+                    new Date());
             mDb.collection("completedGames").add(newGame)
                     .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                         @Override

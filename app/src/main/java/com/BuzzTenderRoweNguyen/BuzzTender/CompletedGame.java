@@ -1,5 +1,7 @@
 package com.BuzzTenderRoweNguyen.BuzzTender;
 
+import java.util.Date;
+
 public class CompletedGame {
 
     private String game;
@@ -7,16 +9,18 @@ public class CompletedGame {
     private String nickname;
     private float bac;
     private String result;
+    private Date createdTime;
 
     public CompletedGame() {
     }
 
-    public CompletedGame(String uid, String game, String nickname, float bac, String result) {
+    public CompletedGame(String uid, String game, String nickname, float bac, String result, Date createdTime) {
         this.uid = uid;
         this.game = game;
         this.nickname = nickname;
         this.bac = bac;
         this.result = result;
+        this.createdTime = createdTime;
     }
 
 
@@ -26,6 +30,7 @@ public class CompletedGame {
     public String getNickname() { return nickname; }
     public float getBac() { return bac; }
     public String getResult() { return result; }
+    public Date getCreatedTime() { return createdTime; }
 
 //    SETTERS
     public void setGame(String game) { this.game = game; }

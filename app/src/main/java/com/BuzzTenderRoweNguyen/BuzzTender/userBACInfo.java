@@ -77,7 +77,6 @@ public class userBACInfo extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
-
         TextView genderUpload = (TextView) findViewById(R.id.genderFireFilled);
         TextView weightUpload = (TextView) findViewById(R.id.weightFireFilled);
         TextView ageUpload = (TextView) findViewById(R.id.ageFireFilled);

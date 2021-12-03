@@ -310,16 +310,25 @@
 
             <!--        TODO: recycler view for global previous games -->
 
-        <TextView
-            android:id="@+id/globalGames"
-            style="@style/header_specific_game"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/global_games"
-            app:layout_constraintTop_toBottomOf="@+id/new_game_card"
-            app:layout_constraintStart_toStartOf="parent"
-            android:paddingTop="20dp"
-            android:paddingBottom="10dp"/>
+            <TextView
+                android:id="@+id/globalGames"
+                style="@style/header_specific_game"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/global_games"
+                app:layout_constraintTop_toBottomOf="@+id/new_game_card"
+                app:layout_constraintStart_toStartOf="parent"
+                android:paddingTop="20dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/globalGames_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintTop_toBottomOf="@id/globalGames"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:paddingBottom="20dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

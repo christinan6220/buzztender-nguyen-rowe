@@ -1,6 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="4dp"
+    app:cardCornerRadius="4dp"
+    android:layout_margin="4dp"
+    android:clipToPadding="false"
+    android:paddingVertical="5dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp">
+
+        <TextView
+            android:id="@+id/cg_game_name"
+            style="@style/completed_game_card_tv"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="20sp"/>
+
+<!--        Default text views-->
+        <TextView
+            android:id="@+id/cg_nickname"
+            style="@style/completed_game_card_tv"
+            app:layout_constraintTop_toBottomOf="@+id/cg_game_name"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/cg_nickname"/>
+
+        <TextView
+            android:id="@+id/cg_avg_bac"
+            style="@style/completed_game_card_tv"
+            app:layout_constraintTop_toBottomOf="@+id/cg_nickname"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/cg_avg_bac"/>
+
+        <TextView
+            android:id="@+id/cg_result"
+            style="@style/completed_game_card_tv"
+            app:layout_constraintTop_toBottomOf="@+id/cg_avg_bac"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/cg_result"/>
+
+<!--        firestore filled text views -->
+        <TextView
+            android:id="@+id/cg_user_nickname"
+            style="@style/completed_game_card_tv"
+            app:layout_constraintTop_toBottomOf="@+id/cg_game_name"
+            app:layout_constraintStart_toEndOf="@id/cg_nickname"
+            android:paddingStart="10dp"/>
+
+        <TextView
+            android:id="@+id/cg_user_avg_bac"
+            style="@style/completed_game_card_tv"
+            app:layout_constraintTop_toBottomOf="@+id/cg_user_nickname"
+            app:layout_constraintStart_toEndOf="@id/cg_avg_bac"
+            android:paddingStart="10dp" />
+
+        <TextView
+            android:id="@+id/cg_user_result"
+            style="@style/completed_game_card_tv"
+            app:layout_constraintTop_toBottomOf="@+id/cg_user_avg_bac"
+            app:layout_constraintStart_toEndOf="@id/cg_result"
+            android:paddingStart="10dp"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
