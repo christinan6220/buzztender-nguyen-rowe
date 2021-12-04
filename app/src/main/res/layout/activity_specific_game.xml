@@ -314,8 +314,7 @@
                 <!-- end of new game card-->
             </androidx.cardview.widget.CardView>
 
-            <!--        TODO: recycler view for global previous games -->
-
+<!--            Show all the previous played games-->
             <TextView
                 android:id="@+id/globalGames"
                 style="@style/header_specific_game"

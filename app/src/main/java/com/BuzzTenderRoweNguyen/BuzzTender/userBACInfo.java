@@ -5,6 +5,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +57,8 @@ public class userBACInfo extends AppCompatActivity {
 
     ConstraintLayout constraintLayout;
 
+    private CompletedGameRecyclerAdapter mAdapter;
+
 
 
     @Override
@@ -78,7 +84,10 @@ public class userBACInfo extends AppCompatActivity {
         age = findViewById(R.id.ageFireFilled);
 
 
+
+
         getUserObject();
+        setMyGamesRecyclerView();
 
     }
 
@@ -95,6 +104,7 @@ public class userBACInfo extends AppCompatActivity {
                         // convert document to user obj
                         user = document.toObject(User.class);
                         fillViews();
+
                     } else {
                         Log.d(TAG, "No such document");
                         Toast.makeText(userBACInfo.this, "Click the button to edit your profile.", Toast.LENGTH_SHORT).show();
@@ -118,6 +128,34 @@ public class userBACInfo extends AppCompatActivity {
     public void onUpdateUserProfileClick(View view){
         Intent intent = new Intent(userBACInfo.this, userProfile.class);
         startActivity(intent);
+    }
+
+    private void setMyGamesRecyclerView() {
+        RecyclerView recyclerView = findViewById(R.id.my_games_recyclerView);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+
+        Query query = mDb.collection("completedGames")
+                .whereEqualTo("uid", currentUID)
+                .orderBy("createdTime", Query.Direction.DESCENDING);
+        FirestoreRecyclerOptions<CompletedGame> options = new FirestoreRecyclerOptions.Builder<CompletedGame>()
+                .setQuery(query, CompletedGame.class)
+                .build();
+
+        mAdapter = new CompletedGameRecyclerAdapter(options);
+        recyclerView.setAdapter(mAdapter);
+    }
+
+    protected void onStart() {
+        super.onStart();
+        mAdapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mAdapter != null) {
+            mAdapter.stopListening();
+        }
     }
 
     //signout functionality for the logout button on the toolbar

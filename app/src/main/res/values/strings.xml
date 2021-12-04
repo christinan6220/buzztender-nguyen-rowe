@@ -37,6 +37,7 @@
     <string name="hint_lbs">lbs</string>
     <string name="hint_years">Years</string>
     <string name="update_profile_description">This information is used to calculate your blood alcohol content. Enter a value for all the fields and press the update button.</string>
+    <string name="my_games">My Games</string>
 
     <!--    Games Available Acitivity    -->
     <string name="games_avail_header">Select a game to play or learn more:</string>
