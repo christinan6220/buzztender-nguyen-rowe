@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".locationPage">
+
+    <include
+        layout="@layout/toolbar_main"
+        android:id="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/selectText"
+        android:layout_width="354dp"
+        android:layout_height="199dp"
+        android:gravity="left"
+        android:layout_marginTop="20dp"
+        android:text="Below you can record your location in a pin (with this you can keep track of all the locations you play Buzztender),  or you can look on google maps to find different places to drink around the world!"
+        android:theme="@style/TextAppearance.Pretty"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@id/onDemand"
+        app:layout_constraintTop_toBottomOf = "@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/onDemand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:onClick="clickOnDemand"
+        android:text="Pin Your Buzztender Location"
+        android:theme="@style/Buttons.whiteBlue"
+        app:layout_constraintBottom_toTopOf="@id/maps"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectText" />
+
+    <Button
+        android:id="@+id/maps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:onClick="clickMaps"
+        android:text="Open Google Maps"
+        android:theme="@style/Buttons.whiteBlue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/onDemand" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

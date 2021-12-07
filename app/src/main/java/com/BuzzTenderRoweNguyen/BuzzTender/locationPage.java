@@ -1,31 +1,29 @@
 package com.BuzzTenderRoweNguyen.BuzzTender;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class welcomePage extends AppCompatActivity {
-
-    private static final String TAG = "welcomePage";
+public class locationPage extends AppCompatActivity {
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome_page);
-
+        setContentView(R.layout.activity_location_page);
         //get a reference to the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        //create the up functionality in the toolbar
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
     }
@@ -44,7 +42,7 @@ public class welcomePage extends AppCompatActivity {
             case R.id.action_logout:
                 //MainActivity signUserOut = new MainActivity();
                 signOut();
-                Intent logoutIntent = new Intent(welcomePage.this, MainActivity.class);
+                Intent logoutIntent = new Intent(locationPage.this, MainActivity.class);
                 startActivity(logoutIntent);
                 finish();
                 return true;
@@ -53,23 +51,11 @@ public class welcomePage extends AppCompatActivity {
         }
 
     }
+    public void clickOnDemand(View view) {
+        startActivity(new Intent(this, OnDemandActivity.class));
+    }
 
-    // opens activity_user_profile on button click
-    public void onPlayerProfileClick(View view) {
-        Intent intent = new Intent(welcomePage.this, userBACInfo.class);
-        startActivity(intent);
+    public void clickMaps(View view){
+        startActivity(new Intent(this, MapsActivity.class));
     }
-    //opens the games Activity when button is clicked
-    public void onGamesAvailableClick(View view) {
-        Intent intent = new Intent(welcomePage.this, gamesAvailable.class);
-        startActivity(intent);
     }
-    //opens the location services when clicked
-    public void onDrinkingLocationsClick(View view) {
-        Intent intent = new Intent(welcomePage.this, locationPage.class);
-        startActivity(intent);
-    }
-    public void onBackPressed(){
-        Toast.makeText(welcomePage.this,"There is no back action, try Logout instead", Toast.LENGTH_LONG).show();
-    }
-}

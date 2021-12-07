@@ -60,6 +60,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcomeImage" />
 
+    <Button
+        android:id="@+id/drinkingLocations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:theme="@style/Buttons.whiteBlue"
+        android:text="Drinking Locations"
+        android:onClick="onDrinkingLocationsClick"
+        app:layout_constraintEnd_toEndOf="@+id/gamesAvailable"
+        app:layout_constraintStart_toStartOf="@+id/personalInfo"
+        app:layout_constraintTop_toBottomOf="@+id/personalInfo" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

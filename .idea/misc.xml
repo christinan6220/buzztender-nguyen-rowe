@@ -3,18 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_games_available.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_games_available.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_specific_game.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/activity_user_bacinfo.xml" value="0.3823661297935625" />
-        <entry key="app/src/main/res/layout/activity_user_profile.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_ondemand.xml" value="0.29894937917860553" />
+        <entry key="app/src/main/res/layout/activity_specific_game.xml" value="0.41301955379781596" />
+        <entry key="app/src/main/res/layout/activity_user_bacinfo.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_user_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_welcome_page.xml" value="0.22554347826086957" />
-        <entry key="app/src/main/res/layout/completed_game_card.xml" value="0.22327898550724637" />
         <entry key="app/src/main/res/layout/counter_clicker.xml" value="0.22554347826086957" />
         <entry key="app/src/main/res/layout/games_available_card.xml" value="0.22554347826086957" />
         <entry key="app/src/main/res/layout/games_available_item_card.xml" value="0.22554347826086957" />
         <entry key="app/src/main/res/layout/games_list_item.xml" value="0.22554347826086957" />
-        <entry key="app/src/main/res/layout/toolbar_main.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/toolbar_main.xml" value="0.1328125" />
         <entry key="app/src/main/res/menu/drawable/ic_baseline_expand_less_24.xml" value="0.4348958333333333" />
         <entry key="app/src/main/res/menu/drawable/ic_baseline_expand_more_24.xml" value="0.4348958333333333" />
         <entry key="app/src/main/res/menu/drawable/welcome_Image_background.xml" value="0.1421875" />
